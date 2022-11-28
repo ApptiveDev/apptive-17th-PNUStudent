@@ -28,9 +28,9 @@ class PetitionMain(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get(self, request):
-        all_announces = Petition.objects.all()[-settings.EACH_PERMISSIONMAIN :]
+        all_petitons = Petition.objects.all()[-settings.EACH_PETITIONSMAIN :]
         serializer = PetitionMainListSerializer(
-            all_announces,
+            all_petitons,
             many=True,
             # KeyError get_is_writer(RoomListSerializer)의 request 키를 context로 import
             context={"request": request},
@@ -54,6 +54,7 @@ class PetitionMain(APIView):
                     petition = serializer.save(
                         writer=request.user,
                         category=category,
+                        is_important=False,
                     )
                     serializer = PetitionDetailSerializer(
                         petition,
@@ -79,13 +80,14 @@ class PetitionList(APIView):
             page = int(page)
         except ValueError:
             page = 1
-        page_size = settings.PERMISSIONLIST_PAGE_SIZE
+        page_size = settings.PETITIONLIST_PAGE_SIZE
         start = (page - 1) * page_size
         end = start + page_size
-        all_announces = Petition.objects.all()
+        all_petitons = Petition.objects.all()
         serializer = PetitionTextListSerializer(
-            all_announces[start:end],
+            all_petitons[start:end],
             many=True,
+            context={"request": request},
         )
         return Response(serializer.data)
 

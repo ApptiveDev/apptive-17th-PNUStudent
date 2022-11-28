@@ -1,12 +1,12 @@
 from rest_framework import serializers
-from .models import Petition, Like
+from .models import Petition
 from users.serializers import SimpleUserSerializer
 from comments.serializers import CommentSerializer
 from categories.serializers import CategorySerializer
 
 
 class PetitionMainListSerializer(serializers.ModelSerializer):
-    total_likes = serializers.SerializerMethodField()
+    total_agrees = serializers.SerializerMethodField()
     total_comments = serializers.SerializerMethodField()
     is_writer = serializers.SerializerMethodField()
 
@@ -28,14 +28,14 @@ class PetitionMainListSerializer(serializers.ModelSerializer):
     def get_total_comments(self, petition):
         return petition.count_comment()
 
-    def get_is_owner(self, petition):
+    def get_is_writer(self, petition):
         request = self.context["request"]
         return petition.writer == request.user
 
 
 class PetitionTextListSerializer(serializers.ModelSerializer):
 
-    total_likes = serializers.SerializerMethodField()
+    total_agrees = serializers.SerializerMethodField()
     total_comments = serializers.SerializerMethodField()
     is_writer = serializers.SerializerMethodField()
 
@@ -57,7 +57,7 @@ class PetitionTextListSerializer(serializers.ModelSerializer):
     def get_total_comments(self, petition):
         return petition.count_comment()
 
-    def get_is_owner(self, petition):
+    def get_is_writer(self, petition):
         request = self.context["request"]
         return petition.writer == request.user
 
