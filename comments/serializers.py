@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from users.serializers import SimpleUserSerializer
-from .models import Review
+from .models import Comment
 
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -8,7 +8,7 @@ class CommentSerializer(serializers.ModelSerializer):
     user = SimpleUserSerializer(read_only=True)
 
     class Meta:
-        model = Review
+        model = Comment
         fields = (
             "user",
             "payload",
