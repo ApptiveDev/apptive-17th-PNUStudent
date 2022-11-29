@@ -19,7 +19,26 @@ from .serializers import BenefitListSerializer, BenefitDetailSerializer
 from medias.serializers import PhotoSerializer
 
 
-class Benefits(APIView):
+class BenefitsMain(APIView):
+
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def get(self, request):
+        all_benefits = Benefit.objects.all()
+        total_len = len(all_benefits)
+        pick_benefit = []
+        for n in range(min(total_len, settings.EACH_BENEFITSMAIN)):
+            pick_benefit.append(all_benefits[total_len - 1 - n])
+
+        serializer = BenefitListSerializer(
+            pick_benefit,
+            many=True,
+            context={"request": request},
+        )
+        return Response(serializer.data)
+
+
+class BenefitsList(APIView):
 
     permission_classes = [IsAuthenticatedOrReadOnly]
 
@@ -48,7 +67,7 @@ class Benefits(APIView):
                 raise ParseError("카테고리를 제휴혜택으로 설정해주세요")
             try:
                 category = Category.objects.get(pk=category_pk)
-                if category.kind != Category.CategoryKindChoices.benefitS:
+                if category.kind != Category.CategoryKindChoices.BENEFITS:
                     raise ParseError("카테고리는 '제휴혜택' 이어야합니다.")
             except Category.DoesNotExist:
                 raise ParseError("Category not found")
@@ -102,14 +121,8 @@ class BenefitDetail(APIView):
         )
 
         if serializer.is_valid():
-            category_pk = request.data.get("category")
-            if category_pk:
-                try:
-                    category = Category.objects.get(pk=category_pk)
-                    if category.kind != Category.CategoryKindChoices.BENEFITS:
-                        raise ParseError("카테고리는 '공지사항' 이어야합니다.")
-                except Category.DoesNotExist:
-                    raise ParseError(detail="Benefit not found")
+            benefit = serializer.save()
+            return Response(serializer.data)
         else:
             return Response(serializer.errors)
 

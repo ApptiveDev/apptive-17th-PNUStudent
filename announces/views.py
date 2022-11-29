@@ -19,14 +19,38 @@ from .serializers import AnnounceListSerializer, AnnounceDetailSerializer
 from medias.serializers import PhotoSerializer
 
 
-class Announces(APIView):
+class AnnouncesMain(APIView):
 
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get(self, request):
-        all_announces = Announce.objects.all()[-settings.EACH_ANNOUNCESLIST :]
+        all_announces = Announce.objects.all()
+        total_len = len(all_announces)
+        pick_announce = []
+        for n in range(min(total_len, settings.EACH_ANNOUNCESMAIN)):
+            pick_announce.append(all_announces[total_len - 1 - n])
+
         serializer = AnnounceListSerializer(
-            all_announces,
+            pick_announce,
+            many=True,
+            context={"request": request},
+        )
+        return Response(serializer.data)
+
+
+class AnnouncesList(APIView):
+
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def get(self, request):
+        all_announces = Announce.objects.all()
+        total_len = len(all_announces)
+        pick_announces = []
+        for n in range(min(total_len, settings.ANNOUNCESLIST_PAGE_SIZE)):
+            pick_announces.append(all_announces[total_len - 1 - n])
+
+        serializer = AnnounceListSerializer(
+            pick_announces,
             many=True,
             # KeyError get_is_owner(RoomListSerializer)의 request 키를 context로 import
             context={"request": request},
@@ -95,14 +119,8 @@ class AnnounceDetail(APIView):
         )
 
         if serializer.is_valid():
-            category_pk = request.data.get("category")
-            if category_pk:
-                try:
-                    category = Category.objects.get(pk=category_pk)
-                    if category.kind != Category.CategoryKindChoices.ANNOUNCES:
-                        raise ParseError("The category kind should be announces")
-                except Category.DoesNotExist:
-                    raise ParseError(detail="Announce not found")
+            announce=serializer.save()
+            return Response(serializer.data)
         else:
             return Response(serializer.errors)
 
