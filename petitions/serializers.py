@@ -64,7 +64,7 @@ class PetitionTextListSerializer(serializers.ModelSerializer):
 
 class PetitionDetailSerializer(serializers.ModelSerializer):
 
-    owner = SimpleUserSerializer(read_only=True)
+    writer = SimpleUserSerializer(read_only=True)
     comments = CommentSerializer(
         read_only=True,
         many=True,
@@ -72,8 +72,9 @@ class PetitionDetailSerializer(serializers.ModelSerializer):
     category = CategorySerializer(
         read_only=True,
     )
-    rating = serializers.SerializerMethodField()
     is_writer = serializers.SerializerMethodField()
+    total_agrees = serializers.SerializerMethodField()
+    total_comments = serializers.SerializerMethodField()
 
     class Meta:
         model = Petition
@@ -88,3 +89,15 @@ class PetitionDetailSerializer(serializers.ModelSerializer):
     def get_is_writer(self, petition):
         request = self.context["request"]
         return petition.writer == request.user
+
+
+class AgreeThisPetitionSerializer(serializers.ModelSerializer):
+
+    total_agrees = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Petition
+        fields = "__all__"
+
+    def get_total_agrees(self, petition):
+        return petition.count_agree()

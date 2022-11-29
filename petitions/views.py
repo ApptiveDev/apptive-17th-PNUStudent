@@ -19,6 +19,7 @@ from .serializers import (
     PetitionMainListSerializer,
     PetitionTextListSerializer,
     PetitionDetailSerializer,
+    AgreeThisPetitionSerializer,
 )
 from medias.serializers import PhotoSerializer
 
@@ -28,9 +29,14 @@ class PetitionMain(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get(self, request):
-        all_petitons = Petition.objects.all()[-settings.EACH_PETITIONSMAIN :]
+        all_petitons = Petition.objects.all()
+        total_len = len(all_petitons)
+        pick_petitions = []
+        for n in range(min(total_len, settings.EACH_PETITIONSMAIN)):
+            pick_petitions.append(all_petitons[total_len - 1 - n])
+
         serializer = PetitionMainListSerializer(
-            all_petitons,
+            pick_petitions,
             many=True,
             # KeyError get_is_writer(RoomListSerializer)의 request 키를 context로 import
             context={"request": request},
@@ -45,7 +51,7 @@ class PetitionMain(APIView):
                 raise ParseError("카테고리를 청원 게시판으로 설정해주세요")
             try:
                 category = Category.objects.get(pk=category_pk)
-                if category.kind != Category.CategoryKindChoices.ANNOUNCES:
+                if category.kind != Category.CategoryKindChoices.PETITIONS:
                     raise ParseError("카테고리는 '청원 게시판' 이어야합니다.")
             except Category.DoesNotExist:
                 raise ParseError("Category not found")
@@ -99,7 +105,7 @@ class PetitionList(APIView):
                 raise ParseError("카테고리를 청원 게시판으로 설정해주세요")
             try:
                 category = Category.objects.get(pk=category_pk)
-                if category.kind != Category.CategoryKindChoices.ANNOUNCES:
+                if category.kind != Category.CategoryKindChoices.PETITIONS:
                     raise ParseError("카테고리는 '청원 게시판' 이어야합니다.")
             except Category.DoesNotExist:
                 raise ParseError("Category not found")
@@ -150,17 +156,12 @@ class PetitionDetail(APIView):
             petition,
             data=request.data,
             partial=True,
+            context={"request": request},
         )
 
         if serializer.is_valid():
-            category_pk = request.data.get("category")
-            if category_pk:
-                try:
-                    category = Category.objects.get(pk=category_pk)
-                    if category.kind != Category.CategoryKindChoices.ANNOUNCES:
-                        raise ParseError("The category kind should be announces")
-                except Category.DoesNotExist:
-                    raise ParseError(detail="Petition not found")
+            petition = serializer.save()
+            return Response(serializer.data)
         else:
             return Response(serializer.errors)
 
@@ -193,3 +194,39 @@ class PetitionPhotos(APIView):
             return Response(serializer.data)
         else:
             return Response(serializer.errors)
+
+
+class PetitionAgree(APIView):
+    def get_object(self, pk):
+        try:
+            return Petition.objects.get(pk=pk)
+        except Petition.DoesNotExist:
+            raise NotFound
+
+    def get(self, request, pk):
+        petition = self.get_object(pk)
+        serializer = AgreeThisPetitionSerializer(
+            petition,
+            context={"request": request},
+        )
+        return Response(serializer.data)
+
+    def put(self, request, pk):
+        petition = self.get_object(pk)
+        serializer = AgreeThisPetitionSerializer(
+            petition,
+            data=request.data,
+            partial=True,
+        )
+        if petition.writer == request.user:
+            raise PermissionDenied("자신의 글에 동의를 할 수 없습니다")
+        else:
+            if serializer.is_valid():
+                if petition.agree.filter(pk=request.user.pk).exists():
+                    petition.agree.remove(request.user.pk)
+                    return Response(serializer.data)
+                else:
+                    petition.agree.add(request.user.pk)
+                    return Response(serializer.data)
+            else:
+                return Response(serializer.errors)

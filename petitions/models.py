@@ -17,6 +17,10 @@ class Petition(CommonModel):
         on_delete=models.CASCADE,
         related_name="petitions",
     )
+    agree = models.ManyToManyField(
+        "petitions.Agree",
+        related_name="petition_agree",
+    )
     category = models.ForeignKey(
         "categories.Category",
         null=True,
@@ -34,10 +38,10 @@ class Petition(CommonModel):
     )
 
     def __str__(self) -> str:
-        return ("공지사항")
+        return self.title
 
     def count_agree(petition):
-        return petition.agrees.count()
+        return petition.agree.count()
 
     def count_comment(petition):
         return petition.comments.count()
@@ -58,4 +62,4 @@ class Agree(CommonModel):
     )
 
     def __str__(self):
-        return f"{self.petition.payload}"
+        return f"{self.petition.title}"

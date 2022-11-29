@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Petition
+from .models import Petition, Agree
 
 
 @admin.action(description="모든 게시글 청원 수락")
@@ -37,3 +37,10 @@ class AnnounceAdmin(admin.ModelAdmin):
         "created_at",
         "updated_at",
     )
+
+
+
+@admin.register(Agree)
+class AgreeAdmin(admin.ModelAdmin):
+
+    list_filter = ("created_at", )
