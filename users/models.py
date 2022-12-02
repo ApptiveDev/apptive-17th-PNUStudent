@@ -21,6 +21,7 @@ class User(AbstractUser):
         default="",
     )
     is_cert = models.BooleanField(default=False)
+    is_superuser=models.BooleanField(default=False)
     is_council = models.BooleanField(default=False)
     major = models.CharField(
         max_length=20,
