@@ -22,6 +22,7 @@ from .serializers import (
     AgreeThisPetitionSerializer,
 )
 from medias.serializers import PhotoSerializer
+from comments.serializers import CommentSerializer
 
 
 class PetitionMain(APIView):
@@ -230,3 +231,37 @@ class PetitionAgree(APIView):
                     return Response(serializer.data)
             else:
                 return Response(serializer.errors)
+
+
+class PetitionComment(APIView):
+    
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def get_object(self, pk):
+        try:
+            return Petition.objects.get(pk=pk)
+        except Petition.DoesNotExist:
+            raise NotFound
+
+    def get(self, request, pk):
+        petition = self.get_object(pk)
+        serializer = CommentSerializer(
+            petition.comments.all(),
+            many=True,
+        )
+        return Response(serializer.data)
+
+    def post(self, request, pk):
+        serializer = CommentSerializer(data=request.data)
+        if serializer.is_valid():
+            try:
+                with transaction.atomic():
+                    comments = serializer.save(
+                        user=request.user,
+                        petition = self.get_object(pk),
+                    )
+                return Response(serializer.data)
+            except Exception:
+                raise ParseError("comment not found")
+        else:
+            return Response(serializer.errors)

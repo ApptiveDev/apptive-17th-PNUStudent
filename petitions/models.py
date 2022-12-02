@@ -18,7 +18,7 @@ class Petition(CommonModel):
         related_name="petitions",
     )
     agree = models.ManyToManyField(
-        "petitions.Agree",
+        "petitions.PetitionAgree",
         related_name="petition_agree",
     )
     category = models.ForeignKey(
@@ -47,7 +47,7 @@ class Petition(CommonModel):
         return petition.comments.count()
 
 
-class Agree(CommonModel):
+class PetitionAgree(CommonModel):
     """Like Model Definition"""
 
     user = models.ForeignKey(
@@ -63,3 +63,4 @@ class Agree(CommonModel):
 
     def __str__(self):
         return f"{self.petition.title}"
+

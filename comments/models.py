@@ -11,14 +11,19 @@ class Comment(CommonModel):
         on_delete=models.CASCADE,
         related_name="comments",
     )
-    petitions = models.ForeignKey(
+
+    petition = models.ForeignKey(
         "petitions.Petition",
-        null=True,
+        null = True,
         blank=True,
         on_delete=models.CASCADE,
         related_name="comments",
     )
-    payload = models.TextField()
+
+    payload = models.TextField(
+        max_length=150,
+        default="",
+    )
 
     def __str__(self) -> str:
         return f"{self.user} / {self.payload}"
