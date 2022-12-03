@@ -15,18 +15,18 @@ class Survey(CommonModel):
     writer = models.ForeignKey(
         "users.User",
         on_delete=models.CASCADE,
-        related_name="survey",
+        related_name="surveys",
     )
     participate = models.ManyToManyField(
         "surveys.SurveyParticipate",
-        related_name="survey",
+        related_name="surveys",
     )
     category = models.ForeignKey(
         "categories.Category",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name="survey",
+        related_name="surveys",
     )
 
     on_processing = models.BooleanField(
@@ -50,12 +50,12 @@ class SurveyParticipate(CommonModel):
     user = models.ForeignKey(
         "users.User",
         on_delete=models.CASCADE,
-        related_name="survey",
+        related_name="survey_participate",
     )
     Survey = models.ForeignKey(
         "surveys.Survey",
         on_delete=models.CASCADE,
-        related_name="survey",
+        related_name="survey_participate",
     )
 
     def __str__(self):
