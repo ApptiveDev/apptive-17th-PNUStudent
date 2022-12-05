@@ -1,0 +1,92 @@
+.PetitionTitle
+{
+    margin-top: 10vh;
+    padding-left: 7.5vw;
+    font-size: 1em;
+    text-align: left;
+}
+.PetitionExplanation
+{
+    margin-top: 3px;
+    padding-left: 7.5vw;
+    font-size: 0.7em;
+    text-align: left;
+    color: #565656;
+    font-weight: 350;
+}
+.PetitionPostsDiv
+{
+    display: flex;
+    margin-top: 5px;
+    margin-left: 7.5vw;
+    width: 85vw;
+    height: 20vh;
+    border: 0.5px solid #A6A6A6;
+    border-radius: 5px;
+}
+.PetitionPostsLeftSideDiv
+{
+    width: 8%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.PetitionPostsLeftCenterDiv
+{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+}
+.PetitionPostDefault
+{
+    display: flex;
+    align-items: left;
+    margin-top: 10px;
+}
+.PetitionPostIsRunning
+{
+    font-size: 0.7em;
+    width: min(20%,100px);
+    background: #2968C8;
+    border-radius: 11.5px;
+    font-weight: 350;
+    color: #ffffff;
+    margin-right: 5px;
+}
+.PetitionPostNumPeople
+{
+    font-size: 0.7em;
+    font-weight: 350;
+    color: #565656;
+}
+.PetitionPostTitle
+{
+    margin-top: 3px;
+    width: fit-content;
+    align-items: left;
+}
+.PetitionPostArticle
+{
+    margin-top: 3px;
+    font-size: 0.7em;
+    font-weight: 350;
+    width: fit-content;
+    align-items: left;
+    color: #565656;
+}
+.PetitionPostTime
+{
+    font-size: 0.7em;
+    font-weight: 350;
+    width: fit-content;
+    align-items: left;
+    color: #565656;
+}
+.PetitionPostMore
+{
+    font-size: 0.7em;
+    font-weight: 350;
+    width: fit-content;
+    color: #565656;
+    margin-left: auto;
+}

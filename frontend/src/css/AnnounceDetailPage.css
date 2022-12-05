@@ -1,0 +1,118 @@
+@import url('publicClass.css');
+
+.PostTitle
+{
+    flex-shrink: 0;
+    font-size: 1em;
+    font-weight: 500;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+.PostTitleBottomDiv
+{
+    flex-shrink: 0;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.PostTitleBottomText
+{
+    font-weight: 400;
+    margin-left: 30px;
+    font-size: 0.75em;
+    color: #565656;
+}
+
+.PostImgsDiv
+{
+    display: flex;
+    flex-shrink: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: min(100vw,50vh);
+    height: min(100vw,50vh);
+    overflow-x: scroll;
+
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+}
+
+.PostImgsDiv::-webkit-scrollbar {
+    display: none;
+}
+
+.PostImg
+{
+    scroll-snap-align: start;
+    width: 100%;
+    height: 100%;
+}
+
+.PostMarkDiv
+{
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.PostMark
+{
+    width: 5px;
+    height: 5px;
+    background-color: black;
+    border-radius: 50%;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.PostArticle
+{
+    width: 100%;
+    flex: 1;
+    overflow-y: scroll;
+    border-bottom: 1px solid #C4C4C4;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.PostNavDiv
+{
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    height: 70px;
+}
+
+.PostNavList
+{
+    display: flex;
+    flex: 1;
+}
+.PostNavImg
+{
+    margin-left: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 1em;
+    height: 1em;
+}
+.PostNavText1
+{
+    margin-left: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 0.7em;
+    font-weight: 350;
+}
+.PostNavText2
+{
+    margin-left: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 0.7em;
+    font-weight: 350;
+    color:#565656
+}

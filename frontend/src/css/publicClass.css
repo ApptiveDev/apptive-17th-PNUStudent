@@ -1,0 +1,15 @@
+.DefaultPage
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    font-size: 20px;
+    flex-wrap: nowrap
+}
+
+.DummyHeader
+{
+    height: min(15vw,10vh);
+}

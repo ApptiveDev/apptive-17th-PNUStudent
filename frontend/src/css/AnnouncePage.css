@@ -1,0 +1,132 @@
+@import url('publicClass.css');
+
+.AnnouncePage
+{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    font-size: 20px;
+}
+
+.AnnounceHeader
+{
+    display: flex;
+    font-size: 1em;
+    margin-bottom: 1vh;
+}
+
+.AnnounceHeaderText
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1em;
+    margin-left: 5vw;
+    text-underline-offset : 13px;
+    z-index: 10;
+}
+
+.AnnounceHeaderInput
+{
+    align-self: center;
+    margin-left: auto;
+    height: 30px;
+    width: 30%;
+    padding: 0;
+    border: solid black;
+    border-width: 0 0 1px 0;
+}
+
+.AnnounceHeaderButton
+{
+    align-self: center;
+    height: 30px;
+    margin-right: 5vw;
+    border: solid black;
+    border-width: 0 0 1px 0;
+}
+
+.AnnounceBody
+{
+    flex:1;
+    display: grid;
+    background-color: white;
+    overflow: scroll;
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+    border-top: 1px solid #C4C4C4;
+    border-bottom: 1px solid #C4C4C4;
+    padding-top: 3vh;
+}
+.AnnounceBody::-webkit-scrollbar {
+    display: none;
+}
+
+@media (orientation: portrait) 
+{
+.AnnounceBody
+{
+    grid-template-columns: repeat(2,1fr);
+    grid-auto-rows: 50vw;
+}
+
+}
+
+@media (orientation: landscape) 
+{
+.AnnounceBody
+{
+    grid-template-columns: repeat(5,1fr);
+    grid-auto-rows: 20vw;
+}
+}
+
+.AnnounceBodyPost
+{
+    font-size: 1em;
+    text-align: center;
+    aspect-ratio: 1;
+    margin: 0;
+}
+
+.AnnouncePostImg
+{
+    width: 80%;
+    height: 80%;
+}
+.AnnouncePostFooter
+{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+.AnnouncePostTitle
+{
+    font-size: 0.7em;
+}
+.AnnouncePostDay
+{
+    font-size: 0.7em;
+    margin-left: auto;
+}
+
+.AnnounceFooter
+{
+    display: flex;
+    justify-content: center;
+    font-size: 1em;
+    height: 50px;
+}
+
+.AnnounceFooter > p
+{
+    font-weight: 350;
+    color: #808080;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 0.8em;
+}
