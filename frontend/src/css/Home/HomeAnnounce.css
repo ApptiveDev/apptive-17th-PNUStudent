@@ -1,0 +1,82 @@
+#HomePageAnnounce
+{
+    background-color: white;
+}
+
+.AnnounceDiv
+{
+    width: min(94vw,94vh);
+    margin-left: auto;
+    margin-right: auto;
+
+    font-size: 20px;
+}
+
+.AnnounceDivHeader
+{
+    display: flex;
+    width: 100%;
+
+    font-size: 1em;
+}
+
+.AnnounceTitle
+{
+    margin: 0;
+    font-size: 1em;
+}
+
+.AnnounceMore
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #565656;
+    font-weight: 350;
+    margin: 0;
+    font-size: 0.7em;
+    margin-left: auto;
+}
+
+.AnnounceDivBody
+{
+    display: flex;
+    width: 100%;
+}
+
+.AnnounceBodyElement
+{
+    display: flex;
+    flex-direction: column;
+    font-size: 1em;
+}
+
+.AnnounceImg
+{
+    width: min(30vw,30vh);
+    margin-right: min(2vw,2vh);
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
+}
+
+.AnnouncePostTitle
+{
+    width: min(30vw,30vh);
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    font-size: 0.8em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.DummyTop
+{
+    height: calc(50vh - (min(70vw,65vh) + min(15vw,10vh) * 2 + 108px)/2 - 2em);
+}
+
+.DummyCenter
+{
+    height: min(10vw,5vh);
+}

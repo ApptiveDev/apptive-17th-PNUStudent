@@ -1,0 +1,39 @@
+.BenefitTitle
+{
+    margin-top: 15vh;
+    padding-left: 7.5vw;
+    font-size: 1em;
+    text-align: left;
+}
+
+.BenefitTitleBottomDiv
+{
+    margin-top: 15px;
+    display: flex;
+    width: 85vw;
+    margin-left: 7.5vw;
+}
+
+.BenefitBottomText
+{
+    font-size: 0.9em;
+    margin-right: 10px;
+}
+
+.BenefitMore
+{
+    font-size: 0.8em;
+    margin-left: auto;
+    font-weight: 350;
+    color: #565656;
+}
+
+.BenefitPostsDiv
+{
+    margin-top: 10px;
+    margin-left: 7.5vw;
+    width: 85vw;
+    height: 30vh;
+    border: 0.5px solid #A6A6A6;
+    border-radius: 5px;
+}

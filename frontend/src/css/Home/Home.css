@@ -1,0 +1,43 @@
+@import url('../publicClass.css');
+
+.Home
+{
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: 0;
+    -ms-overflow-style: none;
+}
+
+.Home::-webkit-scrollbar {
+    display: none;
+}
+
+.HomePage
+{
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: start;
+    text-align: center;
+    overflow: auto;
+}
+
+#HomePageBenefit
+{
+    background-color:white;
+    font-size: 20px;
+}
+
+
+#HomePagePetition
+{
+    background-color: White;
+    font-size: 20px;
+}
+
+
+.test
+{
+    padding-top: 48vh;
+}
