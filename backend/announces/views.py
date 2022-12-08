@@ -105,6 +105,8 @@ class AnnounceDetail(APIView):
             announce,
             context={"request": request},
         )
+        announce.hits+=1
+        announce.save()
         return Response(serializer.data)
 
     def put(self, request, pk):
