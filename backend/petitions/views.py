@@ -146,12 +146,9 @@ class PetitionDetail(APIView):
             petition,
             context={"request": request},
         )
-<<<<<<< Updated upstream
-=======
         petition.hits+=1
         petition.save()
         print(serializer)
->>>>>>> Stashed changes
         return Response(serializer.data)
 
     def put(self, request, pk):

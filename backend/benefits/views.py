@@ -107,11 +107,8 @@ class BenefitDetail(APIView):
             benefit,
             context={"request": request},
         )
-<<<<<<< Updated upstream
-=======
         benefit.hits+=1
         benefit.save()
->>>>>>> Stashed changes
         return Response(serializer.data)
 
     def put(self, request, pk):

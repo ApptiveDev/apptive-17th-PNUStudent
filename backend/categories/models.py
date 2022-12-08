@@ -2,7 +2,7 @@ from django.db import models
 from common.models import CommonModel
 
 
-class Category(CommonModel):
+class Category(models.Model):
 
     """Room or Experience Category"""
 
