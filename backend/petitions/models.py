@@ -1,5 +1,6 @@
 from django.db import models
 from common.models import CommonModel
+from categories.models import Category
 
 
 class Petition(CommonModel):
@@ -20,6 +21,7 @@ class Petition(CommonModel):
     agree = models.ManyToManyField(
         "petitions.PetitionAgree",
         related_name="petition_agree",
+        blank=True,
     )
     category = models.ForeignKey(
         "categories.Category",
@@ -28,11 +30,7 @@ class Petition(CommonModel):
         on_delete=models.SET_NULL,
         related_name="petitions",
     )
-<<<<<<< Updated upstream
-
-=======
     
->>>>>>> Stashed changes
     is_important = models.BooleanField(
         default=False,
     )
