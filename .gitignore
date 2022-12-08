@@ -1,0 +1,9 @@
+.env
+*.pyc
+db.sqlite3
+__pycache__
+backend/config/__pycache__/__init__.cpython-310.pyc
+backend/config/__pycache__/authentication.cpython-310.pyc
+backend/config/__pycache__/settings.cpython-310.pyc
+backend/config/__pycache__/urls.cpython-310.pyc
+*.pyc
