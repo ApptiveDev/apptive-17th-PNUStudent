@@ -63,7 +63,7 @@ function PetitionPage()
                 for(let i = 0; i<data.length;i++)
                 {
                     result[i] = (
-                        <div key={i} className="PetitionBodyPostDiv" onClick={()=>nav("/PetitionDetail" + '/'+locate.pathname.split('/')[1] + "/" +data[i].pk)}>
+                        <div key={i} className="PetitionBodyPostDiv" onClick={()=>nav((locate.pathname.includes("/Survey") ? "/SurveyDetail": ("/PetitionDetail" + '/'+locate.pathname.split('/')[1])) + "/" +data[i].pk)}>
                             <div className="PetitionBodyPostText">
                                 {data[i].title}
                             </div>

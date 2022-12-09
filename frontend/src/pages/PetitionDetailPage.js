@@ -93,7 +93,7 @@ function PetitionDetailPage()
         for(let i = 0; i<comments.length;i++)
         {
             result[i] =(
-                <div className="PetitionDetailComment">
+                <div className="PetitionDetailComment" key={i}>
                     <div className="PetitionDetailCommentWriter">{comments[i].user.name} :&nbsp;</div>
                     <div className="PetitionDetailCommentPayload">{comments[i].payload}</div>
                 </div>

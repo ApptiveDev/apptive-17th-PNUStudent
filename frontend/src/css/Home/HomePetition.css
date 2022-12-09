@@ -17,10 +17,9 @@
 .PetitionPostsDiv
 {
     display: flex;
-    margin-top: 5px;
+    margin-top: 15px;
     margin-left: 7.5vw;
     width: 85vw;
-    height: 20vh;
     border: 0.5px solid #A6A6A6;
     border-radius: 5px;
 }
@@ -36,6 +35,7 @@
     flex:1;
     display: flex;
     flex-direction: column;
+    margin : 3px 20px 3px 20px;
 }
 .PetitionPostDefault
 {
@@ -45,7 +45,10 @@
 }
 .PetitionPostIsRunning
 {
-    font-size: 0.7em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 0.6em;
     width: min(20%,100px);
     background: #2968C8;
     border-radius: 11.5px;
@@ -76,6 +79,7 @@
 }
 .PetitionPostTime
 {
+    margin-top: 10px;
     font-size: 0.7em;
     font-weight: 350;
     width: fit-content;
@@ -84,6 +88,7 @@
 }
 .PetitionPostMore
 {
+    margin-top: 10px;
     font-size: 0.7em;
     font-weight: 350;
     width: fit-content;

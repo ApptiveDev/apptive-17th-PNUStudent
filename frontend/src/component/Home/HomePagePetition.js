@@ -31,7 +31,8 @@ function HomePagePetition({mode})
             </div>
 
             <div className="PetitionPostsDiv">
-                <div className='PetitionPostsLeftSideDiv'><img style={{"transform":"rotate(90deg)", "filter":"brightness(200%)"}} src={sideButtonImg}/></div>
+                {//<div className='PetitionPostsLeftSideDiv'><img style={{"transform":"rotate(90deg)", "filter":"brightness(200%)"}} src={sideButtonImg}/></div>
+                }
 
                 <div className='PetitionPostsLeftCenterDiv'>
 
@@ -50,8 +51,8 @@ function HomePagePetition({mode})
                     </div>
                 </div>
 
-                <div className='PetitionPostsLeftSideDiv'><img style={{"transform":"rotate(-90deg)" , "filter":"brightness(200%)"}} src={sideButtonImg}/></div>
-
+                {//<div className='PetitionPostsLeftSideDiv'><img style={{"transform":"rotate(-90deg)" , "filter":"brightness(200%)"}} src={sideButtonImg}/></div>
+                }          
             </div>
         </div>
     )
@@ -66,6 +67,8 @@ function HomePagePetition({mode})
         requestGet((mode == "Petition" ? '/petitions':'/petitions')+'/main').then(
             (data)=>
             {
+                if(data.length == 0)
+                    return
                 var result = []
                 result[0] = data[0].total_agrees
                 result[1] = data[0].title
