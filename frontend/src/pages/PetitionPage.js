@@ -31,11 +31,25 @@ function PetitionPage()
             </div>
 
             <div className="PetitionBody">
+                    <div className="PetitionBodyPostDiv">
+                        <div className="PetitionBodyPostText" style={{"flex":"0.75"}}>
+                            번호
+                        </div>
+                        <div className="PetitionBodyPostText" style={{"flex":"3"}}>
+                            제목
+                        </div>
+                        <div className="PetitionBodyPostText">
+                            조회수
+                        </div>
+                        <div className="PetitionBodyPostText" style={{"marginRight":"30px"}}>
+                            참여
+                        </div>
+                    </div>
                 {postList}
             </div>
 
             <div className="PetitionFooterTopDiv">
-                <button className="PetitionFooterTopButton" onClick={()=>nav('/'+locate.pathname.split('/')[1] + "/Post")}>글쓰기</button>
+                <button onClick={()=>nav('/'+locate.pathname.split('/')[1] + "/Post")}>글쓰기</button>
             </div>
 
             <div className="PetitionFooter">
@@ -64,12 +78,18 @@ function PetitionPage()
                 {
                     result[i] = (
                         <div key={i} className="PetitionBodyPostDiv" onClick={()=>nav((locate.pathname.includes("/Survey") ? "/SurveyDetail": ("/PetitionDetail" + '/'+locate.pathname.split('/')[1])) + "/" +data[i].pk)}>
-                            <div className="PetitionBodyPostText">
+                            <div className="PetitionBodyPostText" style={{"flex":"0.75"}}>
+                                {(page-1)*10 + i + 1}
+                            </div>
+                            <div className="PetitionBodyPostText" style={{"flex":"3"}}>
                                 {data[i].title}
                             </div>
                             <div className="PetitionBodyPostText">
-                                {data[i].writer}
+                                0
                             </div>
+                            <div className="PetitionBodyPostText" style={{"marginRight":"30px"}}>
+                                0
+                            </div>    
                         </div>
                     )
                 }
