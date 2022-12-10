@@ -29,7 +29,7 @@ function requestPostWithAccess(url,json)
             headers : 
                 { 
                 'Content-Type' : 'application/json',
-                'Authorization' : localStorage.getItem("AccessKey")
+                'Authorization' : 'Token ' + localStorage.getItem("AccessKey")
                 },
             method : 'POST',
             body: JSON.stringify(json)

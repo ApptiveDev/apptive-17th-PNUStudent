@@ -11,6 +11,7 @@ import AnnounceDetailPage from './pages/AnnounceDetailPage';
 import PetitionPage from './pages/PetitionPage';
 import PetitionPostPage from './pages/PetitionPostPage';
 import PetitionDetailPage from './pages/PetitionDetailPage';
+import SurveyDetailPage from './pages/SurveyDetailPage';
 
 export const isLoginContext = createContext()
 
@@ -36,6 +37,7 @@ function App() {
             <Route path ="/PetitionDetail/:mode/:index" element={<PetitionDetailPage/>}/>
             <Route path ="/Petition/Post" element={<PetitionPostPage/>}/>
             <Route path ="/Inquiry/Post" element={<PetitionPostPage/>}/>
+            <Route path= "/SurveyDetail/:index" element={<SurveyDetailPage/>}/>
           </Routes>
           </div>
         </isLoginContext.Provider>
