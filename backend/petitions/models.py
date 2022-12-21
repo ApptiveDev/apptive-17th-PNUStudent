@@ -1,6 +1,5 @@
 from django.db import models
 from common.models import CommonModel
-from categories.models import Category
 
 
 class Petition(CommonModel):
@@ -21,7 +20,6 @@ class Petition(CommonModel):
     agree = models.ManyToManyField(
         "petitions.PetitionAgree",
         related_name="petition_agree",
-        blank=True,
     )
     category = models.ForeignKey(
         "categories.Category",

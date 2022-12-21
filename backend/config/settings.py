@@ -52,6 +52,7 @@ CUSTOM_APPS = [
     "medias.apps.MediasConfig",
     "petitions.apps.PetitionsConfig",
     "surveys.apps.SurveysConfig",
+    "setdurations.apps.SetdurationsConfig",
     "users.apps.UsersConfig",
 ]
 

@@ -47,15 +47,14 @@ class Survey(CommonModel):
 class SurveyParticipate(CommonModel):
     """Like Model Definition"""
 
-    user = models.ForeignKey(
+    participant = models.ForeignKey(
         "users.User",
         on_delete=models.CASCADE,
         related_name="survey_participate",
     )
-    Survey = models.ForeignKey(
-        "surveys.Survey",
-        on_delete=models.CASCADE,
-        related_name="survey_participate",
+    survey_sheet = models.TextField(
+        null = True,
+        related_name="survey_sheet",
     )
 
     def __str__(self):
