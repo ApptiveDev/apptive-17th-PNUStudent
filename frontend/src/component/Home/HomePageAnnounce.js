@@ -30,7 +30,7 @@ function HomePageAnnounce()
 
                 <div className='AnnounceDivHeader'>
                     <div className='AnnounceTitle'>공지사항</div>
-                    <div className='AnnounceMore' onClick={()=>{nav("/Announce")}}>더보기 &gt;</div>
+                    <div className='AnnounceMore' onClick={()=>{nav("/Announce/1")}}>더보기 &gt;</div>
                 </div>
 
                 <div className='AnnounceDivBody'>
@@ -60,7 +60,7 @@ function HomePageAnnounce()
 
                 <div className='AnnounceDivHeader'>
                     <div className='AnnounceTitle'>제휴혜택</div>
-                    <div className='AnnounceMore' onClick={()=>{nav("/Benefit")}}>더보기 &gt;</div>
+                    <div className='AnnounceMore' onClick={()=>{nav("/Benefit/1")}}>더보기 &gt;</div>
                 </div>
 
                 <div className='AnnounceDivBody'>

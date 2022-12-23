@@ -19,17 +19,24 @@ function App() {
 
   const [isLogin,setIsLogin] = useState(false)
 
+  const logout = ()=>
+  {
+    setIsLogin(false)
+    localStorage.removeItem("AccessKey")
+    localStorage.removeItem("UserName")
+  }
+
   return (
     <div className="App">
-        <isLoginContext.Provider value={{isLogin,setIsLogin}}>  
+        <isLoginContext.Provider value={{isLogin,setIsLogin,logout}}>  
           <AppHeader/>
           <div className='RoutesDiv'>
           <Routes>
             <Route path ="/" element = {<Home/>}/>
             <Route path ="/Login" element = {<Login/>}/>
             <Route path ="/SignUp" element = {<SignUp/>}/>
-            <Route path ="/Announce" element={<AnnouncePage/>}/>
-            <Route path ="/Benefit" element={<AnnouncePage/>}/>
+            <Route path ="/Announce/:page" element={<AnnouncePage/>}/>
+            <Route path ="/Benefit/:page" element={<AnnouncePage/>}/>
             <Route path ="/AnnounceDetail/:mode/:index" element={<AnnounceDetailPage/>}/>
             <Route path ="/Survey/:page" element={<PetitionPage/>}/>
             <Route path ="/Petition/:page" element={<PetitionPage/>}/>

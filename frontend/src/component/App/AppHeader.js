@@ -8,14 +8,14 @@ import test from "../../img/test.png"
 import { useContext } from 'react'
 import { useRef } from 'react'
 import {isLoginContext} from "../../App.js"
-import {requestPost,requestPostWithAccess} from "../../requests/requests.js"
+import {requestPost,requestGetWithAccess} from "../../requests/requests.js"
 
 var isLoad = false
 
 function AppHeader()
 {
     const nav = useNavigate();
-    const {isLogin,setIsLogin} = useContext(isLoginContext)
+    const {isLogin,setIsLogin,logout} = useContext(isLoginContext)
 
     const navBarRef = useRef()
     const grayGlassRef = useRef()
@@ -48,8 +48,8 @@ function AppHeader()
                 </div>
 
                 <div className='navSubMenyDiv' ref={navBarSubDivRef1}>
-                    <p className='navSubMenu' onClick={()=>nav("/Announce")}>- 공지사항</p>
-                    <p className='navSubMenu' onClick={()=>nav("/Benefit")}>- 제휴혜택</p>
+                    <p className='navSubMenu' onClick={()=>nav("/Announce/1")}>- 공지사항</p>
+                    <p className='navSubMenu' onClick={()=>nav("/Benefit/1")}>- 제휴혜택</p>
                 </div>
 
                 <hr/>
@@ -67,6 +67,8 @@ function AppHeader()
 
                 <hr/>
 
+                {
+                /*
                 <div className='navBarHeader' onClick={()=>OnOffSubMenu(navBarSubDivRef3.current, navMenuImgRef3.current)}>
                     <div className='navBarHeaderText'>학생복지</div>
                     <img className='navBarInButton' src={navSubMenuDownImg} ref={navMenuImgRef3}/>
@@ -76,6 +78,8 @@ function AppHeader()
                     <p className='navSubMenu' onClick={()=>nav("/")}>- 공간 대여</p>
                     <p className='navSubMenu' onClick={()=>nav("/")}>- 장비 대여</p>
                 </div>
+                */
+                }
 
             </div>
 
@@ -99,7 +103,7 @@ function AppHeader()
     {
         return(
             <div className='headerLogin'>
-                {isLogin ? [(<p key={0}>{localStorage.getItem("UserName")}님</p>),(<p key={1} onClick={fetchLogOut}>로그아웃</p>)] : (<img className='headerLoginButton' src={LoginButtonImg} onClick={()=>nav("/Login")}/>)}
+                {isLogin ? (<div style={{"display":"flex"}}><p>{localStorage.getItem("UserName")}님&nbsp;&nbsp;</p><p onClick={logout}>로그아웃</p></div>) : (<img className='headerLoginButton' src={LoginButtonImg} onClick={()=>nav("/Login")}/>)}
             </div>
         )
     }
@@ -118,26 +122,18 @@ function AppHeader()
 
     function fetchMyPage()
     {
-        requestPostWithAccess("/users/mypage",{})
+        requestGetWithAccess("/users/mypage")
             .then(data=>
             {
                 if(data.error != null)
                 {
-                    setIsLogin(false)
+                    logout()
                     return
                 }
                 localStorage.setItem("UserName",data.name)             
                 setIsLogin(true)
             }
             ).catch((e)=>{setIsLogin(false)})
-    }
-
-    function fetchLogOut()
-    {
-        setIsLogin(false)
-        localStorage.removeItem("AccessKey")
-        //localStorage.removeItem("RefreshKey")
-        localStorage.removeItem("UserName")
     }
 
     function OnOffSubMenu(sub, MenuImg)

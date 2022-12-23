@@ -21,28 +21,6 @@ function requestPost(url,json)
     })
 }
 
-function requestPostWithAccess(url,json)
-{
-    return fetch(
-        baseUrl+url,
-        {
-            headers : 
-                { 
-                'Content-Type' : 'application/json',
-                'Authorization' : 'Token ' + localStorage.getItem("AccessKey")
-                },
-            method : 'POST',
-            body: JSON.stringify(json)
-        }
-    ).then(response => 
-    {
-     if(response.status == 200)
-        return response.json();
-     else
-        throw response.status;
-    })
-}
-
 function requestGet(url,json)
 {
     if(json != null)
@@ -75,5 +53,57 @@ function requestGet(url,json)
     })
 }
 
+function requestPostWithAccess(url,json)
+{
+    return fetch(
+        baseUrl+url,
+        {
+            headers : 
+                { 
+                'Content-Type' : 'application/json',
+                'jwt' : localStorage.getItem("AccessKey")
+                },
+            method : 'POST',
+            body: JSON.stringify(json)
+        }
+    ).then(response => 
+    {
+     if(response.status == 200)
+        return response.json();
+     else
+        throw response.status;
+    })
+}
 
-export {requestPost, requestPostWithAccess, requestGet};
+function requestGetWithAccess(url,json)
+{
+    if(json != null)
+    {
+        url += '/'
+        for(let key in json)
+            url+="?"+key+"="+String(json[key])
+    }
+
+    return fetch(
+        baseUrl+url,
+        {
+            headers : 
+                { 
+                'Content-Type' : 'application/json',
+                'jwt' : localStorage.getItem("AccessKey")
+                },
+            method : 'Get'
+        }
+    ).then(response => 
+    {
+     if(response.status == 200)
+        return response.json();
+     else
+        throw response.status;
+    })
+}
+
+
+
+
+export {requestPost, requestGet, requestPostWithAccess,requestGetWithAccess };
