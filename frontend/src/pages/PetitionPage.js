@@ -38,11 +38,8 @@ function PetitionPage()
                         <div className="PetitionBodyPostText" style={{"flex":"3"}}>
                             제목
                         </div>
-                        <div className="PetitionBodyPostText">
-                            조회수
-                        </div>
-                        <div className="PetitionBodyPostText" style={{"marginRight":"30px"}}>
-                            참여
+                        <div className="PetitionBodyPostText" style={{"flex":"2"}}>
+                            {locate.pathname.includes("/Survey") ? "참여" : (locate.pathname.includes("/Petition") ? "동의" : "")}
                         </div>
                     </div>
                 {postList}
@@ -84,12 +81,9 @@ function PetitionPage()
                             <div className="PetitionBodyPostText" style={{"flex":"3"}}>
                                 {data[i].title}
                             </div>
-                            <div className="PetitionBodyPostText">
-                                0
-                            </div>
-                            <div className="PetitionBodyPostText" style={{"marginRight":"30px"}}>
-                                0
-                            </div>    
+                            <div className="PetitionBodyPostText" style={{"flex":"2"}}>
+                                {locate.pathname.includes("/Survey") ? data[i].participates : (locate.pathname.includes("/Petition") ? data[i].total_agrees: "")}
+                            </div>   
                         </div>
                     )
                 }

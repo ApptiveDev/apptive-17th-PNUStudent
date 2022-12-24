@@ -21,8 +21,8 @@ function AnnouncePage()
             <div className='DummyHeader'/>
 
             <div className='AnnounceHeader'>
-                <div className='AnnounceHeaderText' style={locate.pathname.includes("/Announce") ? {"textDecoration": "underline"}:{}} onClick={()=>nav("/Announce")}>공지사항</div>
-                <div className='AnnounceHeaderText' style={locate.pathname.includes("/Benefit") ? {"textDecoration": "underline"}:{}} onClick={()=>nav("/Benefit")}>제휴혜택</div>
+                <div className='AnnounceHeaderText' style={locate.pathname.includes("/Announce") ? {"textDecoration": "underline"}:{}} onClick={()=>nav("/Announce/1")}>공지사항</div>
+                <div className='AnnounceHeaderText' style={locate.pathname.includes("/Benefit") ? {"textDecoration": "underline"}:{}} onClick={()=>nav("/Benefit/1")}>제휴혜택</div>
                 <input className='AnnounceHeaderInput'/>
                 <img className='AnnounceHeaderButton' src={searchImg}/>
             </div>
@@ -45,12 +45,11 @@ function AnnouncePage()
         setPostList([])
         setPageList([])
         makeBodyPosts()
-        makeFooterNumbers()
     }
 
     function makeBodyPosts()
     {
-        requestGet("/announces",{"page":page}).then(
+        requestGet(locate.pathname.includes("/Announce") ? "/announces": "/benefits",{"page":page}).then(
             (data)=>{
                 let result = []
 
@@ -75,14 +74,6 @@ function AnnouncePage()
                 setPageList(result2)   
             }
         ).catch((err)=>console.log(err))
-    }
-
-    function makeFooterNumbers()
-    {
-        var result = []
-        for(let i = 1; i<=5;i++)
-            result[i] = (<p key={i}>&nbsp;&nbsp;&nbsp;{i}&nbsp;&nbsp;&nbsp;</p>) 
-        setPageList(result)    
     }
 
     function movePage(i)

@@ -72,7 +72,7 @@ function AnnounceDetailPage({postInp})
         requestGet((mode === 'Announce' ? '/announces':'/benefits')+'/'+index).then(
             (data)=>
             {                
-                var resultString = [data.title,data.created_at.substr(0,10),data.writer.name,'0',data.content]
+                var resultString = [data.title,data.created_at.substr(0,10),data.writer.name,data.hits,data.content]
                 setPostStringList(resultString)
                 //data.photos = [test,test,test,test]
                 setImgJSXList(GetImgs(data.photos.length > 0 ? data.photos: [test]))

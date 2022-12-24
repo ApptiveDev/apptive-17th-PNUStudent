@@ -29,6 +29,11 @@ function PetitionDetailPage()
                 {petitionPostStringList[4]}
             </div>
 
+            <div className="PetitionDetailCommentsHeader">
+                <div>댓글({commentList.length})</div>
+                <div className="PetitionDetailAgreeButton">동의하기</div>
+            </div>
+
             <div className="PetitionDetailCommentsDiv">
                 {getJSXComments(commentList)}
             </div>
@@ -73,7 +78,7 @@ function PetitionDetailPage()
                 result[0] = data.title
                 result[1] = data.writer.name
                 result[2] = data.created_at.substr(0,10)
-                result[3] = '0'
+                result[3] = data.hits
                 result[4] = data.content
                 setPetitionPostStringList(result)
                 
@@ -94,7 +99,7 @@ function PetitionDetailPage()
         {
             result[i] =(
                 <div className="PetitionDetailComment" key={i}>
-                    <div className="PetitionDetailCommentWriter">{comments[i].user.name} :&nbsp;</div>
+                    <div className="PetitionDetailCommentWriter">{comments[i].user.name}&nbsp;</div>
                     <div className="PetitionDetailCommentPayload">{comments[i].payload}</div>
                 </div>
             )
