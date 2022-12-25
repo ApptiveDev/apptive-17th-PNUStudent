@@ -152,8 +152,8 @@ function SurveyDetailPage()
                         result.push(
                             (
                             <div key={divKey++} className="SurveySelect">
-                                <input onClick={()=>surveyResult[i] = elementList.questions[i].selects[j].pk} type="radio" name={'question' + String(i+1)} value={elementList.questions[i].selects[j].pk}/>
-                                {elementList.questions[i].selects[j].content}
+                                <input id={divKey-1} className="SurveyCheckBox" onClick={()=>surveyResult[i] = elementList.questions[i].selects[j].pk} type="radio" name={'question' + String(i+1)} value={elementList.questions[i].selects[j].pk}/>
+                                <label htmlFor={divKey-1}>{elementList.questions[i].selects[j].content}</label>
                             </div>
                             )
                             )
@@ -165,8 +165,8 @@ function SurveyDetailPage()
                         result.push(
                             (
                             <div key={divKey++} className="SurveySelect">
-                                <input onChange={(e)=>changeCheckBox(i,e)} type="checkbox" name={'question' + String(i+1)} value={elementList.questions[i].selects[j].pk}/>
-                                {elementList.questions[i].selects[j].content}
+                                <input id={divKey-1} className="SurveyCheckBox" onChange={(e)=>changeCheckBox(i,e)} type="checkbox" name={'question' + String(i+1)} value={elementList.questions[i].selects[j].pk}/>
+                                <label htmlFor={divKey-1}>{elementList.questions[i].selects[j].content}</label>
                             </div>
                             )
                             )

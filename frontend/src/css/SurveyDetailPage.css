@@ -122,3 +122,32 @@
     font-weight: 350;
     color:#565656
 }
+
+.SurveyCheckBox[type=checkbox] {
+    display:none;
+}
+.SurveyCheckBox[type=checkbox] + label { 
+    cursor: pointer; 
+    background-repeat: no-repeat;
+    background-image: url('../img/check/checkBoxOff.png');
+    background-size: 18px;
+    background-position:left center;
+    padding-left: 23px;
+}
+.SurveyCheckBox[type=checkbox]:checked + label {
+    background-image: url('../img/check/checkBoxOn.png');
+}
+.SurveyCheckBox[type=radio] {
+    display:none;
+}
+.SurveyCheckBox[type=radio] + label { 
+    cursor: pointer; 
+    background-repeat: no-repeat;
+    background-image: url('../img/check/radioOff.png');
+    background-size: 18px;
+    background-position:left center;
+    padding-left: 23px;
+}
+.SurveyCheckBox[type=radio]:checked + label {
+    background-image: url('../img/check/radioOn.png');
+}

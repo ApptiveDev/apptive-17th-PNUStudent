@@ -92,7 +92,7 @@
     width: 302px;
     height: 150px;
     z-index: 30;
-    border: 0.5px solid #565656;
+    border: 2px solid #565656;
     border-radius: 3px;
 }
 .SurveyPostElement
@@ -115,6 +115,10 @@
     margin-left: auto;
     margin-right: 5px;
     margin-bottom: 5px;
+    background: #CACACA;
+    border: 0;
+    border-radius: 2px;
+    color: white;
 }
 
 .SurveyPostQuestionDiv
@@ -153,9 +157,17 @@
 {
     width: fit-content;
     margin-left: auto;
+    background: #CACACA;
+    border: 0;
+    border-radius: 2px;
+    color: white;
 }
 .SurveyPostQuestionDeleteButton
 {
     width: fit-content;
     margin-left: 3px;
+    background: #CACACA;
+    border: 0;
+    border-radius: 2px;
+    color: white;
 }
