@@ -8,6 +8,8 @@ from medias.serializers import PhotoSerializer
 
 class BenefitListSerializer(ModelSerializer):
 
+    is_writer = serializers.SerializerMethodField()
+
     photos = PhotoSerializer(
         many=True,
         read_only=True,
@@ -20,13 +22,11 @@ class BenefitListSerializer(ModelSerializer):
             "title",
             "photos",
             "writer",
-            "is_writer",
-            "writer",
             "is_important",
+            "is_writer",
         )
 
     def get_is_writer(self, benefit):
-        # dynamic field 동적필드
         request = self.context["request"]
         return benefit.writer == request.user
 
