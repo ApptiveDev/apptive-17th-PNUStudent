@@ -35,6 +35,10 @@ class Benefit(CommonModel):
         null=True,
         blank=True,
     )
+    
+    is_important = models.BooleanField(
+        default=False,
+    )
 
     def __str__(self) -> str:
         return self.title
