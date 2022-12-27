@@ -75,6 +75,28 @@ function requestPostWithAccess(url,json)
     })
 }
 
+function requestPutWithAccess(url,json)
+{
+    return fetch(
+        baseUrl+url,
+        {
+            headers : 
+                { 
+                'Content-Type' : 'application/json',
+                'jwt' : localStorage.getItem("AccessKey")
+                },
+            method : 'PUT',
+            body: JSON.stringify(json)
+        }
+    ).then(response => 
+    {
+     if(response.status == 200)
+        return response.json();
+     else
+        throw response.status;
+    })
+}
+
 function requestGetWithAccess(url,json)
 {
     if(json != null)
@@ -106,4 +128,4 @@ function requestGetWithAccess(url,json)
 
 
 
-export {requestPost, requestGet, requestPostWithAccess,requestGetWithAccess };
+export {requestPost, requestGet, requestPostWithAccess,requestGetWithAccess,requestPutWithAccess };

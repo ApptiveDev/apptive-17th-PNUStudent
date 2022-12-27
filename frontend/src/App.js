@@ -14,6 +14,7 @@ import PetitionDetailPage from './pages/PetitionDetailPage';
 import SurveyDetailPage from './pages/SurveyDetailPage';
 import SurveyPostPage from './pages/SurveyPostPage';
 import PostSuccessPage from './pages/PostSuccessPage';
+import FindInp from './pages/FindInp';
 
 export const isLoginContext = createContext()
 
@@ -37,6 +38,7 @@ function App() {
             <Route path ="/" element = {<Home/>}/>
             <Route path ="/Login" element = {<Login/>}/>
             <Route path ="/SignUp" element = {<SignUp/>}/>
+            <Route path ="/FindInp" element = {<FindInp/>}/>
             <Route path ="/Announce/:page" element={<AnnouncePage/>}/>
             <Route path ="/Benefit/:page" element={<AnnouncePage/>}/>
             <Route path ="/AnnounceDetail/:mode/:index" element={<AnnounceDetailPage/>}/>

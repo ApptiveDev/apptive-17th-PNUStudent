@@ -136,7 +136,8 @@ function HomePageAnnounce()
                     for(let i = 0;i<data.length;i++)
                     {
                         pkList[i] = data[i].pk
-                        imgList[i] = data[i].photos[0] != null ? data[i].photos[0] : test;
+                        if(data[i].photos)
+                            imgList[i] = data[i].photos[0] != null ? data[i].photos[0] : test;
                         titleList[i] = data[i].title != null ? data[i].title : '제목';
                         if(data[i].is_important)
                             titleList[i] = '[중요]' + titleList[i]

@@ -12,6 +12,11 @@ function PetitionPage()
     const [postList,setPostList] = useState([]);
     const [pageList,setPageList] = useState([]);
 
+    //testMode vars
+    const testMode = true;
+    const petitionTestToo = true;
+    //testMode vars
+
     useEffect(onLoadPage,[locate.pathname])
 
     return(
@@ -39,7 +44,7 @@ function PetitionPage()
                             제목
                         </div>
                         <div className="PetitionBodyPostText" style={{"flex":"2"}}>
-                            {locate.pathname.includes("/Survey") ? "참여" : (locate.pathname.includes("/Petition") ? "동의" : "")}
+                            {locate.pathname.includes("/Survey") ? "참여" : (locate.pathname.includes("/Petition") ? "동의" : "조회수")}
                         </div>
                     </div>
                 {postList}
@@ -67,6 +72,47 @@ function PetitionPage()
 
     function getPostsInPage()
     {
+        //testMode
+        if(testMode && (!locate.pathname.includes("/Petition") || petitionTestToo))
+        {
+            var data = page == 1  ?[
+                        {pk:1,title:"테스트 게시글 1", participates : 10,total_agrees:5,hits : 100},
+                        {pk:2,title:"테스트 게시글 2", participates : 10,total_agrees:5,hits : 100},
+                        {pk:3,title:"테스트 게시글 3", participates : 10,total_agrees:5,hits : 100}
+                        ]:[]
+
+            var result = []
+                for(let i = 0; i<data.length;i++)
+                {
+                    result[i] = (
+                        <div key={i} className="PetitionBodyPostDiv" onClick={()=>nav((locate.pathname.includes("/Survey") ? "/SurveyDetail": ("/PetitionDetail" + '/'+locate.pathname.split('/')[1])) + "/" +data[i].pk)}>
+                            <div className="PetitionBodyPostText" style={{"flex":"0.75"}}>
+                                {(page-1)*10 + i + 1}
+                            </div>
+                            <div className="PetitionBodyPostText" style={{"flex":"3"}}>
+                                {data[i].title}
+                            </div>
+                            <div className="PetitionBodyPostText" style={{"flex":"2"}}>
+                                {locate.pathname.includes("/Survey") ? data[i].participates : (locate.pathname.includes("/Petition") ? data[i].total_agrees: data[i].hits)}
+                            </div>   
+                        </div>
+                    )
+                }
+
+                setPostList(result)
+
+                var result2 = []
+                let startI = parseInt((page-1)/5) * 5 + 1
+
+                for(let i = startI; i<startI+5;i++)
+                    result2[i] = (<p key={i} style={i==page ? {"fontWeight":"500",'color':'black'}:{}} onClick={()=>nav('/'+locate.pathname.split('/')[1]+'/'+String(i))}>&nbsp;&nbsp;&nbsp;{i}&nbsp;&nbsp;&nbsp;</p>) 
+
+                setPageList(result2)  
+                return;
+        }
+        //testMode
+
+
         requestGet((locate.pathname.includes("/Survey") ? "/surveys" : (locate.pathname.includes("/Petition") ? "/petitions" : "/inquiries") ),{'page':page}).then(
             (data)=>
             {

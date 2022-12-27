@@ -47,7 +47,7 @@ function SurveyPostPage()
                 </div>
             </div>
 
-            <button className="SurveyPostButton">등록하기</button>
+            <button className="SurveyPostButton" onClick={fetchPostSurvey}>등록하기</button>
 
         </div>
     )
@@ -256,6 +256,12 @@ function SurveyPostPage()
         else
             newQuestions[Index].selects[SelectIndex] = value
         setQuestions(newQuestions)    
+    }
+
+    function fetchPostSurvey()
+    {
+        console.log(questions)
+        nav("/PostSuccess/SurveyPost")
     }
 
 }

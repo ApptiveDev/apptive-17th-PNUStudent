@@ -27,7 +27,7 @@ function Login()
                     로그인
                 </button>
                 <div className='LoginUnderDiv'>
-                    <p className='LoginUnderText'>
+                    <p className='LoginUnderText' onClick={()=>nav("/FindInp")}>
                         회원 정보찾기
                     </p>
                     <p className='LoginUnderBar'>

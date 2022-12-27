@@ -213,6 +213,7 @@ function SurveyDetailPage()
     function fetchPostSurvey()
     {
         console.log(surveyResult)
+        nav("/PostSuccess/Survey")
     }
 }
 

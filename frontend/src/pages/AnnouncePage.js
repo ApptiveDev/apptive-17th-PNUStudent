@@ -56,7 +56,7 @@ function AnnouncePage()
                 for(let i = 0; i<data.length;i++)
                     result[i] = 
                     (<div key={i} className='AnnounceBodyPost' onClick={()=>nav("/AnnounceDetail/" + locate.pathname.split('/')[1] + "/" +`${data[i].pk}`)}>
-                        <img className='AnnouncePostImg' src={data[i].photos.length === 0 ? test:data[i].photos[0]}/>
+                        <img className='AnnouncePostImg' src={(!data[i].photos || data[i].photos.length === 0) ? test:data[i].photos[0]}/>
                         <div className='AnnouncePostFooter'>
                             <div className='AnnouncePostTitle'>{data[i].is_important ? "[중요]":""}{data[i].title}</div>
                             <div className='AnnouncePostDay'>{data[i].writer}</div>

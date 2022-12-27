@@ -174,12 +174,12 @@ function fetchSingUp()
         password : passwordInput.current.value,
         //name : nameInput.current.value,
         //college: collegeSelect.current.options[collegeSelect.current.selectedIndex].innerHTML,
-        major : majorSelect.current.options[majorSelect.current.selectedIndex].innerHTML
+        major : majorSelect.current.options[majorSelect.current.selectedIndex].innerHTML //"aerospaceE"
     }).then((data)=>
     {     
-            if(data.error != null)
+            if(data.username != ID.current.value)
             {
-                alert(data.error)
+                alert("회원가입에 실패하였습니다.")
                 return
             }
             alert("회원가입에 성공하였습니다. 이메일의 인증메일을 확인해주세요")

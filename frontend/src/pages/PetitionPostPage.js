@@ -34,6 +34,8 @@ function PetitionPostPage()
 
     function fetchPost()
     {
+        nav("/PostSuccess/" + (locate.pathname.includes("/Petition") ? "Petition" : "Inquiry"))
+
         requestPostWithAccess(locate.pathname.includes("Petition") ? "/petitions": "/inquiries",
         {
             title : titleRef.current.value,
@@ -42,7 +44,7 @@ function PetitionPostPage()
             (data)=>
             {
                 alert(data.detail)
-                nav("/" + locate.pathname.split('/')[1] + "/1")
+                nav("/PostSuccess/" + (locate.pathname.includes("/Petition") ? "Petition" : "Inquiry"))
             }
         ).catch(
             (err)=>alert(err)

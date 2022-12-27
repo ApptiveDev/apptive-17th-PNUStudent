@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import "../css/PetitionDetailPage.css"
 import MenuDownImg from "../img/header/navMenuDown.png"
-import { requestGet } from "../requests/requests";
+import { requestGet, requestPutWithAccess } from "../requests/requests";
 
 function PetitionDetailPage()
 {
@@ -31,7 +31,7 @@ function PetitionDetailPage()
 
             <div className="PetitionDetailCommentsHeader">
                 <div>댓글({commentList.length})</div>
-                <div className="PetitionDetailAgreeButton">동의하기</div>
+                {mode === 'Petition' ?(<div className="PetitionDetailAgreeButton" onClick={fetchPutAgree}>동의하기</div>):""}
             </div>
 
             <div className="PetitionDetailCommentsDiv">
@@ -114,6 +114,18 @@ function PetitionDetailPage()
             return
         nav("/PetitionDetail/"+mode+"/"+ `${parseInt(index) + i}`)
         
+    }
+
+    function fetchPutAgree()
+    {
+        requestPutWithAccess("/petitions/" + index + "/agree").then(
+            (data)=>
+            {
+                alert(data);
+            }
+        ).catch(
+            (err)=>console.log(err)
+        )
     }
 }
 
