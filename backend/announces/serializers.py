@@ -7,6 +7,8 @@ from medias.serializers import PhotoSerializer
 
 
 class AnnounceListSerializer(ModelSerializer):
+    
+    writer = SimpleUserSerializer(read_only=True)
 
     photos = PhotoSerializer(
         many=True,
@@ -40,6 +42,5 @@ class AnnounceDetailSerializer(ModelSerializer):
         fields = "__all__"
 
     def get_is_writer(self, announce):
-        # dynamic field 동적필드
         request = self.context["request"]
         return announce.writer == request.user

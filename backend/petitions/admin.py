@@ -24,6 +24,8 @@ class AnnounceAdmin(admin.ModelAdmin):
         "on_processing",
         "writer",
         "created_at",
+        "petition_start_date",
+        "petition_end_date",
     )
     search_fields = (
         #

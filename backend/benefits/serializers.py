@@ -7,6 +7,8 @@ from medias.serializers import PhotoSerializer
 
 
 class BenefitListSerializer(ModelSerializer):
+    
+    writer = SimpleUserSerializer(read_only=True)
 
     is_writer = serializers.SerializerMethodField()
 

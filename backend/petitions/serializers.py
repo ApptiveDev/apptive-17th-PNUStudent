@@ -9,6 +9,7 @@ class PetitionMainListSerializer(serializers.ModelSerializer):
     total_agrees = serializers.SerializerMethodField()
     total_comments = serializers.SerializerMethodField()
     is_writer = serializers.SerializerMethodField()
+    writer = SimpleUserSerializer(read_only=True)
 
     class Meta:
         model = Petition
@@ -19,7 +20,11 @@ class PetitionMainListSerializer(serializers.ModelSerializer):
             "total_agrees",
             "total_comments",
             "is_important",
+            "writer",
             "is_writer",
+            "created_at",
+            "petition_start_date",
+            "petition_end_date",
         )
 
     def get_total_agrees(self, petition):
@@ -38,6 +43,7 @@ class PetitionTextListSerializer(serializers.ModelSerializer):
     total_agrees = serializers.SerializerMethodField()
     total_comments = serializers.SerializerMethodField()
     is_writer = serializers.SerializerMethodField()
+    writer = SimpleUserSerializer(read_only=True)
 
     class Meta:
         model = Petition
@@ -49,6 +55,8 @@ class PetitionTextListSerializer(serializers.ModelSerializer):
             "total_agrees",
             "total_comments",
             "is_writer",
+            "petition_start_date",
+            "petition_end_date",
         )
 
     def get_total_agrees(self, petition):
