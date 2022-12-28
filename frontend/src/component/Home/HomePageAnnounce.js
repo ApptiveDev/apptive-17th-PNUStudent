@@ -137,7 +137,7 @@ function HomePageAnnounce()
                     {
                         pkList[i] = data[i].pk
                         if(data[i].photos)
-                            imgList[i] = data[i].photos[0] != null ? data[i].photos[0] : test;
+                            imgList[i] = data[i].photos[0] != null ? data[i].photos[0].file : test;
                         titleList[i] = data[i].title != null ? data[i].title : '제목';
                         if(data[i].is_important)
                             titleList[i] = '[중요]' + titleList[i]
