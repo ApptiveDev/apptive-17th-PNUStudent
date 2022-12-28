@@ -101,20 +101,10 @@ class PetitionList(APIView):
     def post(self, request):
         serializer = PetitionDetailSerializer(data=request.data)
         if serializer.is_valid():
-            category_pk = request.data.get("category")
-            if not category_pk:
-                raise ParseError("카테고리를 청원 게시판으로 설정해주세요")
-            try:
-                category = Category.objects.get(pk=category_pk)
-                if category.kind != Category.CategoryKindChoices.PETITIONS:
-                    raise ParseError("카테고리는 '청원 게시판' 이어야합니다.")
-            except Category.DoesNotExist:
-                raise ParseError("Category not found")
             try:
                 with transaction.atomic():
                     petition = serializer.save(
                         writer=request.user,
-                        category=category,
                     )
                     serializer = PetitionDetailSerializer(
                         petition,
