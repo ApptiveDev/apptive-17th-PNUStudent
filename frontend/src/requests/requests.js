@@ -1,4 +1,4 @@
-const baseUrl = "http://127.0.0.1:8000"
+const baseUrl = "http://ec2-3-35-141-42.ap-northeast-2.compute.amazonaws.com:8080"
 
 function requestPost(url,json)
 {

@@ -50,7 +50,7 @@ function PetitionPage()
             </div>
 
             <div className="PetitionFooterTopDiv">
-                <button onClick={()=>nav('/'+locate.pathname.split('/')[1] + "/Post")}>글쓰기</button>
+                <button onClick={onClickPost}>글쓰기</button>
             </div>
 
             <div className="PetitionFooter">
@@ -67,6 +67,14 @@ function PetitionPage()
         setPostList([])
         setPageList([])
         getPostsInPage()
+    }
+
+    function onClickPost()
+    {
+        if(localStorage.getItem("AccessKey"))
+            nav('/'+locate.pathname.split('/')[1] + "/Post")
+        else
+            alert("로그인이 필요한 기능입니다.")
     }
 
     function getPostsInPage()

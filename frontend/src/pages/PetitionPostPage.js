@@ -34,11 +34,12 @@ function PetitionPostPage()
 
     function fetchPost()
     {
-        requestPostWithAccess(locate.pathname.includes("Petition") ? "/petitions": "/inquiries/main/",
+        requestPostWithAccess(locate.pathname.includes("Petition") ? "/petitions/": "/inquiries/main/",
         {
             title : titleRef.current.value,
             is_important : false,
-            content : articleRef.current.value
+            content : articleRef.current.value,
+            category : locate.pathname.includes("Petition") ? '2' : '3'
         }).then(
             (data)=>
             {

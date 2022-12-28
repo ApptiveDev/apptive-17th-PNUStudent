@@ -172,9 +172,9 @@ function fetchSingUp()
     requestPost("/users/",{
         username : ID.current.value,
         password : passwordInput.current.value,
-        //name : nameInput.current.value,
+        name : nameInput.current.value,
         //college: collegeSelect.current.options[collegeSelect.current.selectedIndex].innerHTML,
-        major : majorSelect.current.options[majorSelect.current.selectedIndex].innerHTML //"aerospaceE"
+        major : /*majorSelect.current.options[majorSelect.current.selectedIndex].innerHTML*/ "aerospaceE"
     }).then((data)=>
     {     
             if(data.username != ID.current.value)
