@@ -19,6 +19,7 @@ class Petition(CommonModel):
     )
     agree = models.ManyToManyField(
         "petitions.PetitionAgree",
+        blank=True,
         related_name="petition_agree",
     )
     category = models.ForeignKey(
