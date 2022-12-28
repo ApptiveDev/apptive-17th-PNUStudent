@@ -115,7 +115,7 @@ class AnnounceDetail(APIView):
 
     def put(self, request, pk):
         announce = self.get_object(pk)
-        if announce.owner != request.user:
+        if announce.writer != request.user:
             raise PermissionDenied
 
         serializer = AnnounceDetailSerializer(
@@ -132,7 +132,7 @@ class AnnounceDetail(APIView):
 
     def delete(self, request, pk):
         announce = self.get_object(pk)
-        if announce.owner != request.user:
+        if announce.writer != request.user:
             raise PermissionDenied
         announce.delete()
         return Response(status=HTTP_204_NO_CONTENT)
