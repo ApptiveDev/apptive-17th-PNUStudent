@@ -88,7 +88,7 @@ function AnnounceDetailPage({postInp})
         var result = []
         for(var i = 0; i<srcList.length;i++)
         {
-            result[i] = (<img key={i} src={srcList[i]} className='PostImg'/>)
+            result[i] = (<img key={i} src={srcList[i].file} className='PostImg'/>)
         }
         return result
     }
