@@ -38,8 +38,7 @@ function PetitionPostPage()
         {
             title : titleRef.current.value,
             is_important : false,
-            content : articleRef.current.value,
-            category : locate.pathname.includes("Petition") ? '2' : '3'
+            content : articleRef.current.value
         }).then(
             (data)=>
             {
