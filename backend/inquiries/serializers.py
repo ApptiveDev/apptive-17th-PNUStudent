@@ -7,6 +7,7 @@ from categories.serializers import CategorySerializer
 
 class InquiryListSerializer(serializers.ModelSerializer):
 
+    writer = SimpleUserSerializer(read_only=True)
     is_writer = serializers.SerializerMethodField()
 
     class Meta:
@@ -46,6 +47,8 @@ class InquiryDetailSerializer(serializers.ModelSerializer):
             "title",
             "content",
             "writer",
+            "created_at",
+            "hits"
         )
 
 

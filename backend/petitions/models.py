@@ -29,6 +29,10 @@ class Petition(CommonModel):
         on_delete=models.SET_NULL,
         related_name="petitions",
     )
+
+    petition_start_date = models.DateField(null=True,)
+    petition_end_date = models.DateField(null=True,)
+    
     
     is_important = models.BooleanField(
         default=False,

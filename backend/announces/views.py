@@ -33,7 +33,7 @@ class AnnouncesMain(APIView):
         serializer = AnnounceListSerializer(
             pick_announce,
             many=True,
-            context={"request": request},
+            context={"request": request,},
         )
         return Response(serializer.data)
 
