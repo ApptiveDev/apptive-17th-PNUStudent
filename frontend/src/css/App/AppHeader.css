@@ -15,13 +15,13 @@
     left: 0%;
     display: flex;
     width: 100%;
+    height: min(15vw,10vh);
     z-index: 10;
     align-content:flex-start;
 }
 
 .headerLogo
 {
-    width: min(15vw,10vh);
     padding-left: min(3vw,3vh);
 }
 
@@ -29,17 +29,18 @@
 {
     display: flex;
     margin-left: auto;
-    width: min(15vw,10vh);
+    flex-direction: column;
+    justify-content: center;
 }
 
 .headerLoginButton
 {
     width: 100%;
+    height: min(15vw,10vh)
 }
 
 .headerNavButton
 {
-    width: min(15vw,10vh);
     padding-right: min(3vw,3vh);
 }
 

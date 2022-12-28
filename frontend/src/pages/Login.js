@@ -1,7 +1,7 @@
 import "../css/Login.css"
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { requestPost, requestPostWithAccess } from '../requests/requests';
+import { requestPost, requestGetWithAccess } from '../requests/requests';
 import { useContext } from 'react';
 import { isLoginContext } from '../App';
 
@@ -27,7 +27,7 @@ function Login()
                     로그인
                 </button>
                 <div className='LoginUnderDiv'>
-                    <p className='LoginUnderText'>
+                    <p className='LoginUnderText' onClick={()=>nav("/FindInp")}>
                         회원 정보찾기
                     </p>
                     <p className='LoginUnderBar'>
@@ -47,7 +47,7 @@ function Login()
         if(!canLogin)
         return;
         canLogin = false;
-        requestPost("/users/jwt-login",
+        requestPost("/users/login",
         {
             username:IDInput.current.value, 
             password:passwordInput.current.value
@@ -61,11 +61,11 @@ function Login()
                 canLogin = true
                 return
             }
-            localStorage.setItem("AccessKey","token " + data.token)
+            localStorage.setItem("AccessKey",data.token)
             //localStorage.setItem("RefreshKey",data.refresh)
             //localStorage.setItem("UserName",username)
 
-            requestPostWithAccess("/users/mypage",{})
+            requestGetWithAccess("/users/mypage")
             .then(data=>
             {
                 if(data.error != null)

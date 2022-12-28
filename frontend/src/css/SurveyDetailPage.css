@@ -4,21 +4,30 @@
 {
     display: flex;
     flex-direction: column;
-    border: #565656 solid;
-    border-width: 0.25px 0 0 0;
+    border-top: 0.25px #565656 solid;
+    border-bottom: 7px #d9d9d9 solid;
+    padding: 6px 0 6px 0;
+}
+
+.SurveyHeaderTitle
+{
+    font-weight: 500;
+    font-size: 0.9em;
+    margin-left: 30px;
 }
 
 .SurveyHeaderElement
 {
-    margin-left: 10px;
+    font-weight: 400;
+    color: #565656;
+    font-size: 0.7em;
+    margin-left: 30px;
 }
 
 .SurveyBody
 {
     display: flex;
     flex-direction: column;
-    border: #565656 solid;
-    border-width: 0.25px 0 0.25px 0;
     flex:1;
     overflow-y: scroll;
     -ms-overflow-style: none; 
@@ -31,13 +40,16 @@
 
 .SurveyArticle
 {
-    height: 40%;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.8em;
+    flex: 1;
     overflow-y: scroll;
     -ms-overflow-style: none; 
     scrollbar-width: none;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 10px;
 }
 
 .SurveyArticle::-webkit-scrollbar {
@@ -46,8 +58,29 @@
 
 .SurveyToSubmitButton
 {
-    width: fit-content;
-    margin : auto
+    text-align: center;
+    padding: 10px 0 10px 0;
+    color: #044CA1;
+    font-size: 0.8em;
+    font-weight: 400;
+    border: solid #044CA1;
+    border-width: 0.5px 0 0.5px 0;
+    background-color: white;
+}
+
+.SurveyQuestion
+{
+    margin-top: 20px;
+}
+.SurveySelect
+{
+    margin-top: 3px;
+}
+
+.SurveyTextArea
+{
+    resize: none;
+    font-size: 0.8em;
 }
 
 .PostNavDiv
@@ -58,10 +91,11 @@
     height: 70px;
 }
 
-.PostNavList
+.PetitionPostNavList
 {
     display: flex;
     flex: 1;
+    border-bottom: 0.25px solid #565656;
 }
 .PostNavImg
 {
@@ -87,4 +121,33 @@
     font-size: 0.7em;
     font-weight: 350;
     color:#565656
+}
+
+.SurveyCheckBox[type=checkbox] {
+    display:none;
+}
+.SurveyCheckBox[type=checkbox] + label { 
+    cursor: pointer; 
+    background-repeat: no-repeat;
+    background-image: url('../img/check/checkBoxOff.png');
+    background-size: 18px;
+    background-position:left center;
+    padding-left: 23px;
+}
+.SurveyCheckBox[type=checkbox]:checked + label {
+    background-image: url('../img/check/checkBoxOn.png');
+}
+.SurveyCheckBox[type=radio] {
+    display:none;
+}
+.SurveyCheckBox[type=radio] + label { 
+    cursor: pointer; 
+    background-repeat: no-repeat;
+    background-image: url('../img/check/radioOff.png');
+    background-size: 18px;
+    background-position:left center;
+    padding-left: 23px;
+}
+.SurveyCheckBox[type=radio]:checked + label {
+    background-image: url('../img/check/radioOn.png');
 }

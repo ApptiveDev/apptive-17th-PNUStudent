@@ -1,1 +1,58 @@
 @import url('publicClass.css');
+.PetitionPostHeader
+{
+    font-size: 0.8em;
+    padding: 5px 10px 5px 10px;
+    border: solid #565656;
+    border-width: 0 0 0.25px 0;
+    font-weight: 500;
+}
+.PetitionPostTitleDiv
+{
+    display: flex;
+    padding: 14px 0px 14px 0px;
+    font-size: 0.7em;
+    width: 100%;
+}
+.PetitionPostTitleDiv > p
+{
+    margin: 0 0 0 12px;
+}
+.PetitionPostTitleInp
+{
+    flex: 1;
+    margin: 0 15px 0 10px;
+    border: 0.5px solid #565656;
+    border-radius: 2px;
+}
+
+.PetitionPostContentDiv
+{
+    display: flex;
+    padding: 0px 0px 10px 0px;
+    font-size: 0.7em;
+    width: 100%;
+}
+.PetitionPostContentDiv > p
+{
+    margin: 0 0 0 12px;
+}
+.PetitionPostContent
+{
+    flex: 1;
+    margin: 0 15px 0 10px;
+    height: 35vh;
+    border: 0.5px solid #565656;
+    border-radius: 2px;
+    resize: none;
+}
+
+.PetitionPostButton
+{
+    margin-top: auto;
+    border: solid #044CA1;
+    border-width:  0.5px 0 0 0;
+    background-color: white;
+    height: 6vh;
+    color: #044CA1;
+}

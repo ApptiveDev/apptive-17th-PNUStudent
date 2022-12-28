@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import "../css/PetitionDetailPage.css"
 import MenuDownImg from "../img/header/navMenuDown.png"
-import { requestGet } from "../requests/requests";
+import { requestGet, requestPutWithAccess } from "../requests/requests";
 
 function PetitionDetailPage()
 {
@@ -27,6 +27,11 @@ function PetitionDetailPage()
 
             <div className="PetitionDetailArticle">
                 {petitionPostStringList[4]}
+            </div>
+
+            <div className="PetitionDetailCommentsHeader">
+                <div>댓글({commentList.length})</div>
+                {mode === 'Petition' ?(<div className="PetitionDetailAgreeButton" onClick={fetchPutAgree}>동의하기</div>):""}
             </div>
 
             <div className="PetitionDetailCommentsDiv">
@@ -72,12 +77,24 @@ function PetitionDetailPage()
                 var result = []
                 result[0] = data.title
                 result[1] = data.writer.name
-                result[2] = data.created_at.substr(0,10)
-                result[3] = '0'
+                if(data.created_at) result[2] = data.created_at.substr(0,10); else result[2] = "2022-12-29"
+                if(data.hits) result[3] = data.hits; else result[3] = 10
                 result[4] = data.content
-                setPetitionPostStringList(result)
+
+                if(data.is_answered)
+                {
+                    requestGet("/inquiries" + '/' + index + '/answer').then(
+                        (data)=>
+                        {
+                            result[4] += "\n\n답변-----------\n\n" + data.inquiry_content;
+                            setPetitionPostStringList(result)
+                        }
+                    ).catch((err)=>{setPetitionPostStringList(result);console.log(err)})
+                }
+                else
+                    setPetitionPostStringList(result)
                 
-                setCommentList(data.comments)
+                if(data.comments)setCommentList(data.comments)
             }
         ).catch(
             (err)=>console.log(err)
@@ -94,7 +111,7 @@ function PetitionDetailPage()
         {
             result[i] =(
                 <div className="PetitionDetailComment" key={i}>
-                    <div className="PetitionDetailCommentWriter">{comments[i].user.name} :&nbsp;</div>
+                    <div className="PetitionDetailCommentWriter">{comments[i].user.name}&nbsp;</div>
                     <div className="PetitionDetailCommentPayload">{comments[i].payload}</div>
                 </div>
             )
@@ -109,6 +126,18 @@ function PetitionDetailPage()
             return
         nav("/PetitionDetail/"+mode+"/"+ `${parseInt(index) + i}`)
         
+    }
+
+    function fetchPutAgree()
+    {
+        requestPutWithAccess("/petitions/" + index + "/agree").then(
+            (data)=>
+            {
+                alert(data);
+            }
+        ).catch(
+            (err)=>console.log(err)
+        )
     }
 }
 

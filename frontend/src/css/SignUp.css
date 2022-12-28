@@ -78,6 +78,7 @@
   border: 1px solid #C3C3C3;
   border-radius: 2px;
   background-color: white;
+  margin-left: 2px;
 }
 
 .SignUpPasswordText
@@ -99,6 +100,7 @@
 
   background: #044CA1;
   border-radius: 2px;
+  border: 0;
   
   font-size: 1em;
   color: white;

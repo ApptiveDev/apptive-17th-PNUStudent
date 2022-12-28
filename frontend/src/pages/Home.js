@@ -13,7 +13,7 @@ function Home()
             <HomePageAnnounce/>
             <HomePagePetition mode='Petition'/>
             <HomePagePetition mode='Survey'/>
-            <HomePageBenefit/>
+            {/*<HomePageBenefit/>*/}
         </div>
     )
 

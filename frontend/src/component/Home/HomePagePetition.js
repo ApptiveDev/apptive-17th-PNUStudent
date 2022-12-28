@@ -10,7 +10,7 @@ function HomePagePetition({mode})
     const nav = useNavigate();
     const locate = useLocation();
 
-    const [petitionStringList,setPetitionStringList] = useState(['0','제목','내용'])
+    const [petitionStringList,setPetitionStringList] = useState(['0','제목','내용','2022.12.28','2023.01.12'])
 
     useEffect(onLoadPage,[locate.pathname])
 
@@ -46,7 +46,7 @@ function HomePagePetition({mode})
                     <div className='PetitionPostArticle'>{petitionStringList[2]}</div>
 
                     <div className='PetitionPostDefault' style={{"marginTop":"auto","marginBottom":"10px"}}>
-                        <div className='PetitionPostTime'>2022.02.02<br/>~2022.02.03</div>
+                        <div className='PetitionPostTime'>{petitionStringList[3]!= "기한없음" ? petitionStringList[3]:""}<br/>~{petitionStringList[4]}</div>
                         <div className='PetitionPostMore' onClick={mode ==="Petition"?()=>nav("/Petition/1"):()=>nav("/Survey/1")}><br/>더보기 &gt;</div>
                     </div>
                 </div>
@@ -64,6 +64,19 @@ function HomePagePetition({mode})
 
     function fetchGetPetition()
     {
+        if(mode == "Survey")
+        {
+            var result = []
+                result[0] = 10
+                result[1] = "테스트 게시글 1"
+                result[2] = "설문조사테스트입니다."
+                result[3] = '2022.12.28'
+                result[4] = '2023.01.12'
+
+                setPetitionStringList(result)
+            return    
+        }
+
         requestGet((mode == "Petition" ? '/petitions':'/petitions')+'/main').then(
             (data)=>
             {
@@ -73,6 +86,8 @@ function HomePagePetition({mode})
                 result[0] = data[0].total_agrees
                 result[1] = data[0].title
                 result[2] = data[0].content
+                result[3] = data[0].petition_start_date ?  data[0].petition_start_date : "기한없음"  
+                result[4] = data[0].petition_end_date ? data[0].petition_end_date : "기한없음"  
                 setPetitionStringList(result)
             }
         ).catch(

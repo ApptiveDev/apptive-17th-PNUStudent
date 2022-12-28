@@ -15,29 +15,39 @@ function PetitionPostPage()
     return (
         <div className="DefaultPage">
             <div className="DummyHeader"/>
+            <div className="PetitionPostHeader">{locate.pathname.includes("/Petition")? "청원게시판":"문의게시판"}</div>
+            
+            <div className="PetitionPostTitleDiv">
+                <p>제목</p>
+                <input className="PetitionPostTitleInp" ref={titleRef}/>
+            </div>
 
-            <input ref={titleRef}/>
+            <div className="PetitionPostContentDiv">
+                <p>내용</p>
+                <textarea ref={articleRef} className="PetitionPostContent"/>
+            </div>
 
-            <textarea ref={articleRef} style={{"height":"50vh","margin":"10px 0 10px 0"}}/>
-
-            <input type="file"/>
-
-            <button onClick={fetchPost}>글쓰기</button>
+            <button className="PetitionPostButton" onClick={fetchPost}>등록하기</button>
 
         </div>
     )
 
     function fetchPost()
     {
-        requestPostWithAccess(locate.pathname.includes("Petition") ? "/petitions": "/inquiries",
+        requestPostWithAccess(locate.pathname.includes("Petition") ? "/petitions/": "/inquiries/main/",
         {
             title : titleRef.current.value,
+            is_important : false,
             content : articleRef.current.value
         }).then(
             (data)=>
             {
-                alert(data.detail)
-                nav("/" + locate.pathname.split('/')[1] + "/1")
+                if(data.detail)
+                {
+                    alert(data.detail)
+                    return
+                }
+                nav("/PostSuccess/" + (locate.pathname.includes("/Petition") ? "Petition" : "Inquiry"))
             }
         ).catch(
             (err)=>alert(err)

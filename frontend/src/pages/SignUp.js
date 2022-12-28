@@ -47,7 +47,7 @@ function SignUp()
                     <input className='SignUpID' ref={ID} placeholder="  웹메일"/>
 
                     <div className='SignUpEmailURL'>
-                        @pusan.ac.kr
+                    &nbsp;&nbsp;@pusan.ac.kr&nbsp;&nbsp;
                     </div>
                 </div>
 
@@ -92,7 +92,7 @@ function SignUp()
                 </select>
 
                 <button className='SignUpButton' onClick={fetchSingUp}>
-                    회원가입
+                    가입하기
                 </button>
                 
         </div>
@@ -163,21 +163,25 @@ function checkPassword()
 function fetchSingUp()
 {
 
-    if(!isPasswordChecked)
+    if(passwordText != "사용하실 수 있는 비밀번호입니다.")
     {
-        alert("회원가입에 실패하였습니다.")
+        alert(passwordText)
         return
     }
 
-    requestPost("/SignUp",{
-        ID : ID.current.value,
+    requestPost("/users/",{
+        username : ID.current.value,
         password : passwordInput.current.value,
-        passwordCheck : passwordCheckInput.current.value,
         name : nameInput.current.value,
-        college: collegeSelect.current.options[collegeSelect.current.selectedIndex].innerHTML,
-        major : majorSelect.current.options[majorSelect.current.selectedIndex].innerHTML
+        //college: collegeSelect.current.options[collegeSelect.current.selectedIndex].innerHTML,
+        major : /*majorSelect.current.options[majorSelect.current.selectedIndex].innerHTML*/ "aerospaceE"
     }).then((data)=>
     {     
+            if(data.username != ID.current.value)
+            {
+                alert("회원가입에 실패하였습니다.")
+                return
+            }
             alert("회원가입에 성공하였습니다. 이메일의 인증메일을 확인해주세요")
             nav("/Login");         
     }

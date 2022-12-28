@@ -64,9 +64,11 @@
     margin-left: auto;
     margin-right: 3px;
     margin-top: 3px;
-    background: #044CA1;
-    border: 0.25px solid #565656;
-    color: #d9d9d9;
+    padding: 5px 20px 5px 20px;
+    background: #FFFFFF;
+    border: 0.5px solid #044CA1;
+    border-radius: 3px;
+    color: #044CA1
 }
 
 .PetitionFooter
@@ -85,7 +87,7 @@
 }
 .PetitionBodyPostDiv
 {
-    height: 10%;
+    height: 9.091%;
     display: flex;
     border: solid #d9d9d9;
     border-width: 0 0 1px 0;
@@ -95,6 +97,9 @@
     flex:1;
     margin-top: auto;
     margin-bottom: auto;
-    padding-left: 10px;
+    text-align: center;
     font-size: 0.9em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
