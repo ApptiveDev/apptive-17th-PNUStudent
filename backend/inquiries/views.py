@@ -82,11 +82,8 @@ class InquiryDetail(APIView):
             inquiry,
             context={"request": request},
         )
-<<<<<<< Updated upstream
-=======
         inquiry.hits+=1
         inquiry.save()
->>>>>>> Stashed changes
         return Response(serializer.data)
 
     def put(self, request, pk):

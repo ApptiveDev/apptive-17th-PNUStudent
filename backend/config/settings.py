@@ -32,7 +32,8 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [".ap-northeast-2.compute.amazonaws.com",
+"127.0.0.1",]
 
 
 # Application definition
@@ -52,6 +53,7 @@ CUSTOM_APPS = [
     "medias.apps.MediasConfig",
     "petitions.apps.PetitionsConfig",
     "surveys.apps.SurveysConfig",
+    "setdurations.apps.SetdurationsConfig",
     "users.apps.UsersConfig",
 ]
 

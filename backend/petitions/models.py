@@ -19,6 +19,7 @@ class Petition(CommonModel):
     )
     agree = models.ManyToManyField(
         "petitions.PetitionAgree",
+        blank=True,
         related_name="petition_agree",
     )
     category = models.ForeignKey(
@@ -28,11 +29,7 @@ class Petition(CommonModel):
         on_delete=models.SET_NULL,
         related_name="petitions",
     )
-<<<<<<< Updated upstream
-
-=======
     
->>>>>>> Stashed changes
     is_important = models.BooleanField(
         default=False,
     )
