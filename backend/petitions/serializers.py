@@ -25,6 +25,7 @@ class PetitionMainListSerializer(serializers.ModelSerializer):
             "created_at",
             "petition_start_date",
             "petition_end_date",
+            "agree",
         )
 
     def get_total_agrees(self, petition):

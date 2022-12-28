@@ -46,7 +46,7 @@ class Petition(CommonModel):
         return self.title
 
     def count_agree(petition):
-        return petition.agree.count()
+        return petition.agrees.count()
 
     def count_comment(petition):
         return petition.comments.count()
