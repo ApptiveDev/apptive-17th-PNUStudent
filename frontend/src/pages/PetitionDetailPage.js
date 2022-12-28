@@ -77,12 +77,24 @@ function PetitionDetailPage()
                 var result = []
                 result[0] = data.title
                 result[1] = data.writer.name
-                result[2] = data.created_at.substr(0,10)
-                result[3] = data.hits
+                if(data.created_at) result[2] = data.created_at.substr(0,10); else result[2] = "2022-12-29"
+                if(data.hits) result[3] = data.hits; else result[3] = 10
                 result[4] = data.content
-                setPetitionPostStringList(result)
+
+                if(data.is_answered)
+                {
+                    requestGet("/inquiries" + '/' + index + '/answer').then(
+                        (data)=>
+                        {
+                            result[4] += "\n\n답변-----------\n\n" + data.inquiry_content;
+                            setPetitionPostStringList(result)
+                        }
+                    ).catch((err)=>{setPetitionPostStringList(result);console.log(err)})
+                }
+                else
+                    setPetitionPostStringList(result)
                 
-                setCommentList(data.comments)
+                if(data.comments)setCommentList(data.comments)
             }
         ).catch(
             (err)=>console.log(err)

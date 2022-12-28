@@ -14,7 +14,6 @@ function PetitionPage()
 
     //testMode vars
     const testMode = true;
-    const petitionTestToo = true;
     //testMode vars
 
     useEffect(onLoadPage,[locate.pathname])
@@ -43,8 +42,8 @@ function PetitionPage()
                         <div className="PetitionBodyPostText" style={{"flex":"3"}}>
                             제목
                         </div>
-                        <div className="PetitionBodyPostText" style={{"flex":"2"}}>
-                            {locate.pathname.includes("/Survey") ? "참여" : (locate.pathname.includes("/Petition") ? "동의" : "조회수")}
+                        <div className="PetitionBodyPostText" style={locate.pathname.includes("/Inquiry")?{"flex":"0"}:{"flex":"2"}}>
+                            {locate.pathname.includes("/Survey") ? "참여" : (locate.pathname.includes("/Petition") ? "동의" : "")}
                         </div>
                     </div>
                 {postList}
@@ -73,7 +72,7 @@ function PetitionPage()
     function getPostsInPage()
     {
         //testMode
-        if(testMode && (!locate.pathname.includes("/Petition") || petitionTestToo))
+        if(testMode && locate.pathname.includes("/Survey"))
         {
             var data = page == 1  ?[
                         {pk:1,title:"테스트 게시글 1", participates : 10,total_agrees:5,hits : 100},
@@ -89,10 +88,10 @@ function PetitionPage()
                             <div className="PetitionBodyPostText" style={{"flex":"0.75"}}>
                                 {(page-1)*10 + i + 1}
                             </div>
-                            <div className="PetitionBodyPostText" style={{"flex":"3"}}>
+                            <div className="PetitionBodyPostText" style={locate.pathname.includes("/Inquiry")?{"flex":"2"}:{"flex":"3"}}>
                                 {data[i].title}
                             </div>
-                            <div className="PetitionBodyPostText" style={{"flex":"2"}}>
+                            <div className="PetitionBodyPostText" style={locate.pathname.includes("/Inquiry")?{"flex":"0"}:{"flex":"2"}}>
                                 {locate.pathname.includes("/Survey") ? data[i].participates : (locate.pathname.includes("/Petition") ? data[i].total_agrees: data[i].hits)}
                             </div>   
                         </div>
@@ -113,7 +112,7 @@ function PetitionPage()
         //testMode
 
 
-        requestGet((locate.pathname.includes("/Survey") ? "/surveys" : (locate.pathname.includes("/Petition") ? "/petitions" : "/inquiries") ),{'page':page}).then(
+        requestGet((locate.pathname.includes("/Survey") ? "/surveys" : (locate.pathname.includes("/Petition") ? "/petitions" : "/inquiries/main") ),{'page':page}).then(
             (data)=>
             {
                 var result = []
@@ -127,7 +126,7 @@ function PetitionPage()
                             <div className="PetitionBodyPostText" style={{"flex":"3"}}>
                                 {data[i].title}
                             </div>
-                            <div className="PetitionBodyPostText" style={{"flex":"2"}}>
+                            <div className="PetitionBodyPostText" style={locate.pathname.includes("/Inquiry")?{"flex":"0"}:{"flex":"2"}}>
                                 {locate.pathname.includes("/Survey") ? data[i].participates : (locate.pathname.includes("/Petition") ? data[i].total_agrees: "")}
                             </div>   
                         </div>

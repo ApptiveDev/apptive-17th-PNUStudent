@@ -34,16 +34,19 @@ function PetitionPostPage()
 
     function fetchPost()
     {
-        nav("/PostSuccess/" + (locate.pathname.includes("/Petition") ? "Petition" : "Inquiry"))
-
-        requestPostWithAccess(locate.pathname.includes("Petition") ? "/petitions": "/inquiries",
+        requestPostWithAccess(locate.pathname.includes("Petition") ? "/petitions": "/inquiries/main/",
         {
             title : titleRef.current.value,
+            is_important : false,
             content : articleRef.current.value
         }).then(
             (data)=>
             {
-                alert(data.detail)
+                if(data.detail)
+                {
+                    alert(data.detail)
+                    return
+                }
                 nav("/PostSuccess/" + (locate.pathname.includes("/Petition") ? "Petition" : "Inquiry"))
             }
         ).catch(
