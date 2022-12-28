@@ -15,6 +15,14 @@ class Photo(CommonModel):
         on_delete=models.CASCADE,
         related_name="photos",
     )
+    benefit = models.ForeignKey(
+        "benefits.Benefit",
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        related_name="photos",
+    )
+    
 
     def __str__(self):
         return "Photo File"
