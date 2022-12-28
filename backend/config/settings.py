@@ -69,7 +69,10 @@ SYSTEM_APPS = [
 
 INSTALLED_APPS = CUSTOM_APPS + THIRD_PARTY_APPS + SYSTEM_APPS
 
-CORS_ORIGIN_WHITELIST = ['http://ec2-3-36-55-0.ap-northeast-2.compute.amazonaws.com/']
+CORS_ORIGIN_WHITELIST = [
+    'http://ec2-3-36-55-0.ap-northeast-2.compute.amazonaws.com:80',
+    'http://ec2-3-36-55-0.ap-northeast-2.compute.amazonaws.com:8080',
+    ]
 CORS_ALLOW_CREDENTIALS = True
 
 MIDDLEWARE = [
