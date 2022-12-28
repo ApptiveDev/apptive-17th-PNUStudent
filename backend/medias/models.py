@@ -4,7 +4,7 @@ from common.models import CommonModel
 
 class Photo(CommonModel):
 
-    file = models.URLField()
+    file = models.URLField(max_length=2000,)
     description = models.CharField(
         max_length=140,
     )
