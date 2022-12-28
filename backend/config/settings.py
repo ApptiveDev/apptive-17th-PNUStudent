@@ -69,8 +69,11 @@ SYSTEM_APPS = [
 
 INSTALLED_APPS = CUSTOM_APPS + THIRD_PARTY_APPS + SYSTEM_APPS
 
+CORS_ORIGIN_WHITELIST = ['http://ec2-3-36-55-0.ap-northeast-2.compute.amazonaws.com/']
+CORS_ALLOW_CREDENTIALS = True
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
