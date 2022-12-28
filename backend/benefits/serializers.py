@@ -22,7 +22,6 @@ class BenefitListSerializer(ModelSerializer):
             "title",
             "photos",
             "writer",
-            "is_important",
             "is_writer",
         )
 
