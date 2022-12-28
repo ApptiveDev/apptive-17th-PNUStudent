@@ -54,7 +54,6 @@ class SurveyParticipate(CommonModel):
     )
     survey_sheet = models.TextField(
         null = True,
-        related_name="survey_sheet",
     )
 
     def __str__(self):

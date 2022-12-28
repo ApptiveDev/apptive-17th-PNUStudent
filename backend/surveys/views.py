@@ -15,7 +15,7 @@ from rest_framework.views import APIView
 
 from categories.models import Category
 from .models import Survey, SurveyParticipate
-from .serializers import SurveyParticipateSerializer, SurveyMainListSerializer, RoomListSerializer
+from .serializers import SurveyParticipateSerializer, SurveyMainListSerializer
 
 class SurveysMain(APIView):
     pass

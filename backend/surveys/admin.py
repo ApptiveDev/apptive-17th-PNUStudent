@@ -35,7 +35,6 @@ class SurveyAdmin(admin.ModelAdmin):
 class SurveyParticipateAdmin(admin.ModelAdmin):
 
     list_filter = (
-        "survey",
         "created_at",
         "updated_at",
     )
