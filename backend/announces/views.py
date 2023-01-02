@@ -15,8 +15,33 @@ from rest_framework.views import APIView
 
 from categories.models import Category
 from .models import Announce
-from .serializers import AnnounceListSerializer, AnnounceDetailSerializer
+from .serializers import AnnounceListSerializer, AnnounceDetailSerializer,AnnounceSearchSerializer
 from medias.serializers import PhotoSerializer
+
+class AnnouncesSearch(APIView):
+    
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def post(self, request):
+
+        serializer = AnnounceSearchSerializer(data=request.data)
+        if serializer.is_valid():
+            include_announce=[]
+            searchword = request.data.get("search_field")
+            if not searchword:
+                raise ParseError("검색어를 입력하시오")
+            try:
+                announces = Announce.objects.all()
+                for announce in announces:
+                    print(announce)
+                    if announce.find(searchword):
+                        include_announce.append(announce.get("pk"))
+                    serializer = (include_announce,)
+                    print(include_announce.data)
+                return Response(serializer.data)
+            except:
+                raise ParseError("검색결과가 없습니다.")
+
 
 
 class AnnouncesMain(APIView):
@@ -52,7 +77,7 @@ class AnnouncesList(APIView):
         page_size = settings.ANNOUNCESLIST_PAGE_SIZE
         start = (page - 1) * page_size
         end = start + page_size
-        all_announces = Announce.objects.all()
+        all_announces = Announce.objects.all().order_by('-id')
         serializer = AnnounceListSerializer(
             all_announces[start:end],
             many=True,

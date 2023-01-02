@@ -51,7 +51,7 @@ class BenefitsList(APIView):
         page_size = settings.BENEFITSLIST_PAGE_SIZE
         start = (page - 1) * page_size
         end = start + page_size
-        all_benefits = Benefit.objects.all()
+        all_benefits = Benefit.objects.all().order_by('-id')
         serializer = BenefitListSerializer(
             all_benefits[start:end],
             many=True,
