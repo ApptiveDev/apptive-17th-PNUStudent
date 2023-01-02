@@ -40,5 +40,12 @@ class Announce(CommonModel):
         default=False,
     )
 
+    search_field = models.TextField(
+        max_length=200,
+        default="",
+        null=True,
+        blank=True,
+    )
+
     def __str__(self) -> str:
         return self.title
