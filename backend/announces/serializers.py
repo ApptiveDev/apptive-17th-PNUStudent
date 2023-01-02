@@ -44,3 +44,17 @@ class AnnounceDetailSerializer(ModelSerializer):
     def get_is_writer(self, announce):
         request = self.context["request"]
         return announce.writer == request.user
+
+
+class AnnounceSearchSerializer(ModelSerializer):
+    writer = SimpleUserSerializer(read_only=True)
+
+    class Meta:
+        model = Announce
+        fields = (
+            "pk",
+            "search_field",
+            "title",
+            "content",
+            "writer",
+        )
